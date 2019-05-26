@@ -1109,10 +1109,6 @@ void CShell::ElementStress(double* stress, double* Displacement, double* positio
 	position[14] = zmid;
 }
 
-#ifdef _VIB_
-void CShell::ElementMass(double* mass) {
-}
-#endif
 void CShell::ElementPostInfo(double* stress2, double* Displacement, double* Positions4SE, double* PostPositions)
 {
 	CShellMaterial* material =dynamic_cast<CShellMaterial*>(ElementMaterial_); // Pointer to material of the element

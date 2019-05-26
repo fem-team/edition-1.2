@@ -788,6 +788,7 @@ void COutputter::OutputElementStress()
 					}
 
 				}
+				break;
 			default: // Invalid element type
 				cerr << "*** Error *** Elment type " << ElementType
 					<< " has not been implemented.\n\n";

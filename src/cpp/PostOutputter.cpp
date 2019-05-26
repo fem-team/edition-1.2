@@ -391,6 +391,66 @@ void CPostOutputter::OutputElementStress()
             }
             break;
 
+		case ElementTypes::Shell:
+			*this << "ZONE T = \"Bridge\", N = " << 8 * NUME << " E = " << NUME
+				<< " F = FEPOINT , ET = BRICK, C = RED" << endl;
+
+			double stresses4SE[48];
+			double PrePositions4SE[24];
+			double Positions4SE[24];
+			double cmptStressShell[4];
+
+			for (unsigned int Ele = 0; Ele < NUME; Ele++)
+			{
+				EleGrp[Ele].ElementPostInfo(stresses4PE, Displacement, PrePositions4PE,
+					Positions4PE);
+
+				for (unsigned i = 0; i < 8; ++i)
+				{
+					// four gauss points;
+					*this << setw(Datalength)
+						<< (1 - coeff) * PrePositions4SE[3 * i] + coeff * Positions4SE[3 * i]
+						<< setw(Datalength)
+						<< (1 - coeff) * PrePositions4SE[3 * i + 1] +
+						coeff * Positions4SE[3 * i + 1]
+						<< setw(Datalength)
+						<< (1 - coeff) * PrePositions4SE[3 * i + 2] +
+						coeff * Positions4SE[3 * i + 2];
+
+					cmptStressShell[0] = stresses4SE[6 * i] + stresses4SE[6 * i + 1] + stresses4SE[6 * i + 2];
+					cmptStressShell[1] = stresses4SE[6 * i] * stresses4SE[6 * i + 1] - stresses4SE[6 * i + 3] * stresses4SE[6 * i + 3]
+						+ stresses4SE[6 * i] * stresses4SE[6 * i + 2] - stresses4SE[6 * i + 5] * stresses4SE[6 * i + 5]
+						+ stresses4SE[6 * i + 1] * stresses4SE[6 * i + 2] - stresses4SE[6 * i + 4] * stresses4SE[6 * i + 4];
+					cmptStressShell[2] = stresses4SE[6 * i] * stresses4SE[6 * i + 1] * stresses4SE[6 * i + 2]
+						+ stresses4SE[6 * i + 3] * stresses4SE[6 * i + 4] * stresses4SE[6 * i + 5] * 2
+						- stresses4SE[6 * i + 1] * stresses4SE[6 * i + 5] * stresses4SE[6 * i + 5]
+						- stresses4SE[6 * i + 2] * stresses4SE[6 * i + 3] * stresses4SE[6 * i + 3]
+						- stresses4SE[6 * i + 4] * stresses4SE[6 * i + 4] * stresses4SE[6 * i];
+					cmptStressShell[3] = sqrt(cmptStressShell[0] * cmptStressShell[0] - cmptStressShell[1]);
+					*this << setw(Datalength) << cmptStressShell[0]
+						<< setw(Datalength) << cmptStressShell[1]
+						<< setw(Datalength) << cmptStressShell[2]
+						<< setw(Datalength) << cmptStressShell[3];
+
+					*this << setw(Datalength) << stresses4SE[6 * i]
+						<< setw(Datalength) << stresses4SE[6 * i + 1]
+						<< setw(Datalength) << stresses4SE[6 * i + 2]
+						<< setw(Datalength) << stresses4SE[6 * i + 3]
+						<< setw(Datalength) << stresses4SE[6 * i + 4]
+						<< setw(Datalength) << stresses4SE[6 * i + 5] << endl;
+				}
+			}
+			for (unsigned int Ele = 0; Ele < NUME; Ele++)
+			{
+				for (unsigned int i = 0; i < 8; ++i)
+				{
+					*this << setw(Datalength) << 8 * Ele + i + 1;
+				}
+				*this << std::endl;
+			}
+
+			break;
+
 		default: // Invalid element type
 				cerr << "*** Error *** Elment type  " << ElementType
 					<< " has not been implemented for PostOutputter.\n\n";
