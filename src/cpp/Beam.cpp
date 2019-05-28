@@ -346,14 +346,14 @@ void CBeam::ElementPostInfo(double* beamstress, double* Displacement, double* pr
 		  theta[0][i-3] = Displacement[LocationMatrix_[i]-1];
 		 }
 		else{
-		  theta[0][i-3] = nodes_[0]->XYZ[i];	 
+		  theta[0][i-3] = nodes_[0]->XYZ[i-3];	 
 		}
 
 		if (LocationMatrix_[i+6]){
 		  theta[1][i-3] = Displacement[LocationMatrix_[i+6]-1];
 		}
 		else{		 
-		  theta[1][i-3] = nodes_[1]->XYZ[i];
+		  theta[1][i-3] = nodes_[1]->XYZ[i-3];
 		}
 	}
 
