@@ -271,20 +271,20 @@ void CQ4::ElementCoordinates (double * coord)
 	double psi;
 	GP = 0.57735;
 	eta = -GP; psi = -GP;
-	coord[0]=( nodes_[0]->XYZ[0]*(1-eta)*(1-psi) + nodes_[1]->XYZ[0]*(1-eta)*(1+psi) + nodes_[2]->XYZ[0]*(1+eta)*(1+psi) + nodes_[3]->XYZ[0]*(1+eta)*(1-psi) )/4;
-	coord[1]=( nodes_[0]->XYZ[1]*(1-eta)*(1-psi) + nodes_[1]->XYZ[1]*(1-eta)*(1+psi) + nodes_[2]->XYZ[1]*(1+eta)*(1+psi) + nodes_[3]->XYZ[1]*(1+eta)*(1-psi) )/4;
+	coord[0]=( nodes_[0]->XYZ[0]*(1.0-eta)*(1-psi) + nodes_[1]->XYZ[0]*(1.0-eta)*(1+psi) + nodes_[2]->XYZ[0]*(1.0+eta)*(1+psi) + nodes_[3]->XYZ[0]*(1.0+eta)*(1-psi) )/4;
+	coord[1]=( nodes_[0]->XYZ[1]*(1.0-eta)*(1-psi) + nodes_[1]->XYZ[1]*(1.0-eta)*(1+psi) + nodes_[2]->XYZ[1]*(1.0+eta)*(1+psi) + nodes_[3]->XYZ[1]*(1.0+eta)*(1-psi) )/4;
 
 	eta = GP; psi = -GP;
-	coord[2]=( nodes_[0]->XYZ[0]*(1-eta)*(1-psi) + nodes_[1]->XYZ[0]*(1-eta)*(1+psi) + nodes_[2]->XYZ[0]*(1+eta)*(1+psi) + nodes_[3]->XYZ[0]*(1+eta)*(1-psi) )/4;
-	coord[3]=( nodes_[0]->XYZ[1]*(1-eta)*(1-psi) + nodes_[1]->XYZ[1]*(1-eta)*(1+psi) + nodes_[2]->XYZ[1]*(1+eta)*(1+psi) + nodes_[3]->XYZ[1]*(1+eta)*(1-psi) )/4;
+	coord[2]=( nodes_[0]->XYZ[0]*(1.0-eta)*(1-psi) + nodes_[1]->XYZ[0]*(1.0-eta)*(1+psi) + nodes_[2]->XYZ[0]*(1.0+eta)*(1+psi) + nodes_[3]->XYZ[0]*(1.0+eta)*(1-psi) )/4;
+	coord[3]=( nodes_[0]->XYZ[1]*(1.0-eta)*(1-psi) + nodes_[1]->XYZ[1]*(1.0-eta)*(1+psi) + nodes_[2]->XYZ[1]*(1.0+eta)*(1+psi) + nodes_[3]->XYZ[1]*(1.0+eta)*(1-psi) )/4;
 
 	eta = -GP; psi = GP;
-	coord[4]=( nodes_[0]->XYZ[0]*(1-eta)*(1-psi) + nodes_[1]->XYZ[0]*(1-eta)*(1+psi) + nodes_[2]->XYZ[0]*(1+eta)*(1+psi) + nodes_[3]->XYZ[0]*(1+eta)*(1-psi) )/4;
-	coord[5]=( nodes_[0]->XYZ[1]*(1-eta)*(1-psi) + nodes_[1]->XYZ[1]*(1-eta)*(1+psi) + nodes_[2]->XYZ[1]*(1+eta)*(1+psi) + nodes_[3]->XYZ[1]*(1+eta)*(1-psi) )/4;
+	coord[4]=( nodes_[0]->XYZ[0]*(1.0-eta)*(1-psi) + nodes_[1]->XYZ[0]*(1.0-eta)*(1+psi) + nodes_[2]->XYZ[0]*(1.0+eta)*(1+psi) + nodes_[3]->XYZ[0]*(1.0+eta)*(1-psi) )/4;
+	coord[5]=( nodes_[0]->XYZ[1]*(1.0-eta)*(1-psi) + nodes_[1]->XYZ[1]*(1.0-eta)*(1+psi) + nodes_[2]->XYZ[1]*(1.0+eta)*(1+psi) + nodes_[3]->XYZ[1]*(1.0+eta)*(1-psi) )/4;
 
 	eta = GP; psi = GP;
-	coord[6]=( nodes_[0]->XYZ[0]*(1-eta)*(1-psi) + nodes_[1]->XYZ[0]*(1-eta)*(1+psi) + nodes_[2]->XYZ[0]*(1+eta)*(1+psi) + nodes_[3]->XYZ[0]*(1+eta)*(1-psi) )/4;
-	coord[7]=( nodes_[0]->XYZ[1]*(1-eta)*(1-psi) + nodes_[1]->XYZ[1]*(1-eta)*(1+psi) + nodes_[2]->XYZ[1]*(1+eta)*(1+psi) + nodes_[3]->XYZ[1]*(1+eta)*(1-psi) )/4;
+	coord[6]=( nodes_[0]->XYZ[0]*(1.0-eta)*(1-psi) + nodes_[1]->XYZ[0]*(1.0-eta)*(1+psi) + nodes_[2]->XYZ[0]*(1.0+eta)*(1+psi) + nodes_[3]->XYZ[0]*(1.0+eta)*(1-psi) )/4;
+	coord[7]=( nodes_[0]->XYZ[1]*(1.0-eta)*(1-psi) + nodes_[1]->XYZ[1]*(1.0-eta)*(1+psi) + nodes_[2]->XYZ[1]*(1.0+eta)*(1+psi) + nodes_[3]->XYZ[1]*(1.0+eta)*(1-psi) )/4;
 }
 
 void CQ4::ElementPostInfo(double* stress, double* Displacement, double* PrePositions,

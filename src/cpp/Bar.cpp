@@ -139,7 +139,7 @@ void CBar::ElementStress(double* stress, double* Displacement)
 	CBarMaterial* material_ = dynamic_cast<CBarMaterial*>(ElementMaterial_);	// Pointer to material of the element
 
 	double DX[3];	//	dx = x2-x1, dy = y2-y1, dz = z2-z1
-	double L2 = 0;	//	Square of bar length (L^2)
+	double L2 = 0.0;	//	Square of bar length (L^2)
 
 	for (unsigned int i = 0; i < 3; i++)
 	{

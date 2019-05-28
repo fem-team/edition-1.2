@@ -107,8 +107,8 @@ void C8H::ElementStiffness(double* Matrix)
 	double E = material->E;
 	double nv = material->Nu;
 	double G = 0.5*E/(1+nv);//D[2]
-	double lambda = nv*E/((1+nv)*(1-2*nv));//D[1]
-	double mu=lambda+2*G;//mu
+	double lambda = nv*E/((1.0 +nv)*(1.0 -2.0 *nv));//D[1]
+	double mu=lambda+2.0 *G;//mu
 	// Construct coordinate matrix
 	double COORXYZ[24];
 	for (unsigned int i = 0; i < 8; i++)
@@ -131,18 +131,18 @@ void C8H::ElementStiffness(double* Matrix)
 		double zeta = zeta8[p];
 
 		double GN[12];
-		GN[0] = (1-eta)*(1-zeta) / 8.0;
-		GN[1] = (1+eta)*(1-zeta) / 8.0;
-		GN[2] = (1-eta)*(1+zeta) / 8.0;
-		GN[3] = (1+eta)*(1+zeta) / 8.0;
-		GN[4] = (1+xi)*(1-zeta) / 8.0;
-		GN[5] = (1-xi)*(1-zeta) / 8.0;
-		GN[6] = (1+xi)*(1+zeta) / 8.0;
-		GN[7] = (1-xi)*(1+zeta) / 8.0;
-		GN[8] = (1+xi)*(1-eta) / 8.0;
-		GN[9] = (1+xi)*(1+eta) / 8.0;
-		GN[10] = (1-xi)*(1+eta) / 8.0;
-		GN[11] = (1-xi)*(1-eta) / 8.0;
+		GN[0] = (1.0-eta)*(1.0-zeta) / 8.0;
+		GN[1] = (1.0+eta)*(1.0-zeta) / 8.0;
+		GN[2] = (1.0-eta)*(1.0+zeta) / 8.0;
+		GN[3] = (1.0+eta)*(1.0+zeta) / 8.0;
+		GN[4] = (1.0+xi)*(1.0-zeta) / 8.0;
+		GN[5] = (1.0-xi)*(1.0-zeta) / 8.0;
+		GN[6] = (1.0+xi)*(1.0+zeta) / 8.0;
+		GN[7] = (1.0-xi)*(1.0+zeta) / 8.0;
+		GN[8] = (1.0+xi)*(1.0-eta) / 8.0;
+		GN[9] = (1.0+xi)*(1.0+eta) / 8.0;
+		GN[10] = (1.0-xi)*(1.0+eta) / 8.0;
+		GN[11] = (1.0-xi)*(1.0-eta) / 8.0;
 
 		double J[9];
 		J[0] = COORXYZ[0]*GN[0]+COORXYZ[3]*GN[1]-COORXYZ[6]*GN[1]-COORXYZ[9]*GN[0]+COORXYZ[12]*GN[2]+COORXYZ[15]*GN[3]-COORXYZ[18]*GN[3]-COORXYZ[21]*GN[2];
@@ -515,11 +515,11 @@ void C8H::ElementStress(double* stress8H, double* Displacement)
 	// Construct constitutive matrix
 	C8HMaterial* material = static_cast<C8HMaterial*>(ElementMaterial_);	// Pointer to material of the element
 	double v = material->Nu;
-	double k = material->E * (1-v)/(1+v)/(1-2*v);
+	double k = material->E * (1.0 -v)/(1.0 +v)/(1.0 -2.0 *v);
 	double D[3];
 	D[0] = k;
-	D[1] = k * v / (1 - v);
-	D[2] = k * (1 - 2 * v) / 2.0 / (1 - v);
+	D[1] = k * v / (1.0 - v);
+	D[2] = k * (1.0 - 2.0 * v) / 2.0 / (1.0 - v);
 
 	// Construct coordinate matrix
 	double COORXYZ[24];
@@ -544,18 +544,18 @@ void C8H::ElementStress(double* stress8H, double* Displacement)
 		double zeta = zeta8[p];
 
 		double GN[12];
-		GN[0] = (1-eta)*(1-zeta) / 8.0;
-		GN[1] = (1+eta)*(1-zeta) / 8.0;
-		GN[2] = (1-eta)*(1+zeta) / 8.0;
-		GN[3] = (1+eta)*(1+zeta) / 8.0;
-		GN[4] = (1+xi)*(1-zeta) / 8.0;
-		GN[5] = (1-xi)*(1-zeta) / 8.0;
-		GN[6] = (1+xi)*(1+zeta) / 8.0;
-		GN[7] = (1-xi)*(1+zeta) / 8.0;
-		GN[8] = (1+xi)*(1-eta) / 8.0;
-		GN[9] = (1+xi)*(1+eta) / 8.0;
-		GN[10] = (1-xi)*(1+eta) / 8.0;
-		GN[11] = (1-xi)*(1-eta) / 8.0;
+		GN[0] = (1.0-eta)*(1.0-zeta) / 8.0;
+		GN[1] = (1.0+eta)*(1.0-zeta) / 8.0;
+		GN[2] = (1.0-eta)*(1.0+zeta) / 8.0;
+		GN[3] = (1.0+eta)*(1.0+zeta) / 8.0;
+		GN[4] = (1.0+xi)*(1.0-zeta) / 8.0;
+		GN[5] = (1.0-xi)*(1.0-zeta) / 8.0;
+		GN[6] = (1.0+xi)*(1.0+zeta) / 8.0;
+		GN[7] = (1.0-xi)*(1.0+zeta) / 8.0;
+		GN[8] = (1.0+xi)*(1.0-eta) / 8.0;
+		GN[9] = (1.0+xi)*(1.0+eta) / 8.0;
+		GN[10] = (1.0-xi)*(1.0+eta) / 8.0;
+		GN[11] = (1.0-xi)*(1.0-eta) / 8.0;
 
 		double J[9];
 		J[0] = COORXYZ[0] * GN[0] + COORXYZ[3] * GN[1] - COORXYZ[6] * GN[1] - COORXYZ[9] * GN[0] + COORXYZ[12] * GN[2] + COORXYZ[15] * GN[3] - COORXYZ[18] * GN[3] - COORXYZ[21] * GN[2];
@@ -676,11 +676,11 @@ void  C8H::ElementPostInfo(double* stress, double* Displacement , double* PrePos
 	// Construct constitutive matrix
 	C8HMaterial* material = static_cast<C8HMaterial*>(ElementMaterial_);	// Pointer to material of the element
 	double v = material->Nu;
-	double k = material->E * (1-v)/(1+v)/(1-2*v);
+	double k = material->E * (1.0 -v)/(1.0 +v)/(1.0 -2.0 *v);
 	double D[3];
 	D[0] = k;
-	D[1] = k * v / (1 - v);
-	D[2] = k * (1 - 2 * v) / 2.0 / (1 - v);
+	D[1] = k * v / (1.0 - v);
+	D[2] = k * (1.0 - 2.0 * v) / 2.0 / (1.0 - v);
 
 
 	// Construct Jacobi matrix
@@ -696,18 +696,18 @@ void  C8H::ElementPostInfo(double* stress, double* Displacement , double* PrePos
 		double zeta = zeta8[p];
 
 		double GN[12];
-		GN[0] = (1-eta)*(1-zeta) / 8.0;
-		GN[1] = (1+eta)*(1-zeta) / 8.0;
-		GN[2] = (1-eta)*(1+zeta) / 8.0;
-		GN[3] = (1+eta)*(1+zeta) / 8.0;
-		GN[4] = (1+xi)*(1-zeta) / 8.0;
-		GN[5] = (1-xi)*(1-zeta) / 8.0;
-		GN[6] = (1+xi)*(1+zeta) / 8.0;
-		GN[7] = (1-xi)*(1+zeta) / 8.0;
-		GN[8] = (1+xi)*(1-eta) / 8.0;
-		GN[9] = (1+xi)*(1+eta) / 8.0;
-		GN[10] = (1-xi)*(1+eta) / 8.0;
-		GN[11] = (1-xi)*(1-eta) / 8.0;
+		GN[0] = (1.0-eta)*(1.0-zeta) / 8.0;
+		GN[1] = (1.0+eta)*(1.0-zeta) / 8.0;
+		GN[2] = (1.0-eta)*(1.0+zeta) / 8.0;
+		GN[3] = (1.0+eta)*(1.0+zeta) / 8.0;
+		GN[4] = (1.0+xi)*(1.0-zeta) / 8.0;
+		GN[5] = (1.0-xi)*(1.0-zeta) / 8.0;
+		GN[6] = (1.0+xi)*(1.0+zeta) / 8.0;
+		GN[7] = (1.0-xi)*(1.0+zeta) / 8.0;
+		GN[8] = (1.0+xi)*(1.0-eta) / 8.0;
+		GN[9] = (1.0+xi)*(1.0+eta) / 8.0;
+		GN[10] = (1.0-xi)*(1.0+eta) / 8.0;
+		GN[11] = (1.0-xi)*(1.0-eta) / 8.0;
 
 		double J[9];
 		J[0] = PrePositions[0] * GN[0] + PrePositions[3] * GN[1] - PrePositions[6] * GN[1] - PrePositions[9] * GN[0] + PrePositions[12] * GN[2] + PrePositions[15] * GN[3] - PrePositions[18] * GN[3] - PrePositions[21] * GN[2];

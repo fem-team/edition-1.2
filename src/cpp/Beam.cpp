@@ -85,8 +85,8 @@ void CBeam::ElementStiffness(double* Matrix)
 	double y1=material_->y1;
 	double x2=material_->x2;
 	double y2=material_->y2;
-	double Iz = a*a*a*b/12-(a-x1-x2)*(a-x1-x2)*(a-x1-x2)*(b-y1-y2)/12;
-	double Iy = b*b*b*a/12-(b-y1-y2)*(b-y1-y2)*(b-y1-y2)*(a-x1-x2)/12;
+	double Iz = a*a*a*b/12.0 -(a-x1-x2)*(a-x1-x2)*(a-x1-x2)*(b-y1-y2)/12.0;
+	double Iy = b*b*b*a/12.0 -(b-y1-y2)*(b-y1-y2)*(b-y1-y2)*(a-x1-x2)/12.0;
 	
 	
 
@@ -271,9 +271,9 @@ void CBeam::ElementPostInfo(double* beamstress, double* Displacement, double* pr
     double L = sqrt(DX[0] * DX[0] + DX[1] * DX[1] + DX[2] * DX[2]);
 
 	 double n[3][3];
-	 n[0][0] = DX[1] / L;
-	 n[0][1] = DX[2] / L;
-	 n[0][2] = DX[3] / L;
+	 n[0][0] = DX[0] / L;
+	 n[0][1] = DX[1] / L;
+	 n[0][2] = DX[2] / L;
 	 n[1][0] = material_->n1;
      n[1][1] = material_->n2;
      n[1][2] = material_->n3; 
