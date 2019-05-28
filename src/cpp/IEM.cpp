@@ -165,7 +165,7 @@ void CIEM::ElementStiffness(double* Matrix)
 			D[0] = E / (1 - nu * nu);
 			D[1] = nu * E / (1 - nu * nu);
 			D[2] = E / (1 - nu * nu);
-			D[3] = (1 - nu) * E / (2 - 2 * nu * nu);
+			D[3] = (1.0-nu) * E / (2 - 2 * nu * nu);
 
 			Matrix[0] += Je * (B[0][0] * B[0][0] * D[0] + B[1][0] * B[1][0] * D[3]);
 			Matrix[1] += Je * (B[1][0] * B[1][0] * D[2] + B[0][0] * B[0][0] * D[3]);

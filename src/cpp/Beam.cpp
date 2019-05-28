@@ -92,13 +92,13 @@ void CBeam::ElementStiffness(double* Matrix)
 
 	double k[8];
 	 k[0] = material_->E * material_->a * material_->b / L;
-     k[1] = 12 * material_->E * Iz / (L * L * L);
-     k[2] = 12 * material_->E * Iy / (L * L * L);
-	 k[3] = material_->E * (Iz+Iy) / ((2 + 2 * material_->Nu) * L);
-     k[4] = 4 * material_->E * Iy / L;
-     k[5] = 4 * material_->E * Iz / L;
-	 k[6] = 6 * material_->E * Iy / (L * L);
-     k[7] = 6 * material_->E * Iz / (L * L);
+     k[1] = 12.0 * material_->E * Iz / (L * L * L);
+     k[2] = 12.0 * material_->E * Iy / (L * L * L);
+	 k[3] = material_->E * (Iz+Iy) / ((2.0 + 2.0 * material_->Nu) * L);
+     k[4] = 4.0 * material_->E * Iy / L;
+     k[5] = 4.0 * material_->E * Iz / L;
+	 k[6] = 6.0 * material_->E * Iy / (L * L);
+     k[7] = 6.0 * material_->E * Iz / (L * L);
 
 		 double n[3][3];
 		 n[0][0] = DX[0] / L;
@@ -191,9 +191,9 @@ void CBeam::ElementStiffness(double* Matrix)
     Matrix[46] = k[6] * N[19] - k[7] * N[18];
     Matrix[47] = k[6] * N[21] - k[7] * N[20];
     Matrix[48] = k[6] * N[24] - k[7] * N[24];
-    Matrix[49] = (k[4] * N[16]) / 2 - k[3] * N[15] + (k[5] * N[17]) / 2;
-    Matrix[50] = (k[4] * N[10]) / 2 - k[3] * N[9] + (k[5] * N[11]) / 2;
-    Matrix[51] = -k[3] * N[0] + (k[4] * N[3]) / 2 + (k[5] * N[6]) / 2;
+    Matrix[49] = (k[4] * N[16]) / 2.0 - k[3] * N[15] + (k[5] * N[17]) / 2.0;
+    Matrix[50] = (k[4] * N[10]) / 2.0 - k[3] * N[9] + (k[5] * N[11]) / 2.0;
+    Matrix[51] = -k[3] * N[0] + (k[4] * N[3]) / 2.0 + (k[5] * N[6]) / 2.0;
     Matrix[52] = k[7] * N[18] - k[6] * N[19];
     Matrix[53] = k[7] * N[20] - k[6] * N[21];
     Matrix[54] = k[7] * N[24] - k[6] * N[24];
@@ -202,9 +202,9 @@ void CBeam::ElementStiffness(double* Matrix)
     Matrix[57] = k[6] * N[23] - k[7] * N[22];
     Matrix[58] = k[6] * N[25] - k[7] * N[25];
     Matrix[59] = k[6] * N[20] - k[7] * N[21];
-    Matrix[60] = (k[4] * N[13]) / 2 - k[3] * N[12] + (k[5] * N[14]) / 2;
-    Matrix[61] = -k[3] * N[1] + (k[4] * N[4]) / 2 + (k[5] * N[7]) / 2;
-    Matrix[62] = (k[4] * N[10]) / 2 - k[3] * N[9] + (k[5] * N[11]) / 2;
+    Matrix[60] = (k[4] * N[13]) / 2.0 - k[3] * N[12] + (k[5] * N[14]) / 2.0;
+    Matrix[61] = -k[3] * N[1] + (k[4] * N[4]) / 2.0 + (k[5] * N[7]) / 2.0;
+    Matrix[62] = (k[4] * N[10]) / 2.0 - k[3] * N[9] + (k[5] * N[11]) / 2.0;
     Matrix[63] = k[7] * N[22] - k[6] * N[23];
     Matrix[64] = k[7] * N[25] - k[6] * N[25];
     Matrix[65] = k[7] * N[21] - k[6] * N[20];
@@ -214,9 +214,9 @@ void CBeam::ElementStiffness(double* Matrix)
     Matrix[69] = k[6] * N[26] - k[7] * N[26];
     Matrix[70] = k[6] * N[22] - k[7] * N[23];
     Matrix[71] = k[6] * N[18] - k[7] * N[19];
-    Matrix[72] = -k[3] * N[2] + (k[4] * N[5]) / 2 + (k[5] * N[8]) / 2;
-    Matrix[73] = (k[4] * N[13]) / 2 - k[3] * N[12] + (k[5] * N[14]) / 2;
-    Matrix[74] = (k[4] * N[16]) / 2 - k[3] * N[15] + (k[5] * N[17]) / 2;
+    Matrix[72] = -k[3] * N[2] + (k[4] * N[5]) / 2.0 + (k[5] * N[8]) / 2.0;
+    Matrix[73] = (k[4] * N[13]) / 2.0 - k[3] * N[12] + (k[5] * N[14]) / 2.0;
+    Matrix[74] = (k[4] * N[16]) / 2.0 - k[3] * N[15] + (k[5] * N[17]) / 2.0;
     Matrix[75] = k[7] * N[26] - k[6] * N[26];
     Matrix[76] = k[7] * N[23] - k[6] * N[22];
     Matrix[77] = k[7] * N[19] - k[6] * N[18];
@@ -300,10 +300,10 @@ void CBeam::ElementPostInfo(double* beamstress, double* Displacement, double* pr
 
 	// Define the scale of co-dimension
 	double magCodim = 0.1;
-    r[0][0] = 0;
-    r[1][0] = 0;
-    r[2][0] = 0;
-    r[3][0] = 0;
+    r[0][0] = 0.0;
+    r[1][0] = 0.0;
+    r[2][0] = 0.0;
+    r[3][0] = 0.0;
     r[0][1] = - magCodim * a;
     r[1][1] = magCodim * a;
     r[2][1] = magCodim * a;
@@ -381,10 +381,10 @@ void CBeam::ElementPostInfo(double* beamstress, double* Displacement, double* pr
     double dtheta[2][3];//rate of the change of the corner
     dtheta[0][0] = (phi[1][2] - phi[0][2]) / L;
     dtheta[1][0] = dtheta[0][0];
-	dtheta[0][1] = (D[0][2] - D[1][2]) * 6 / (L*L) - phi[0][1] * 4 / L + phi[1][1] * 2 / L;
-    dtheta[1][1] = (D[1][2] - D[0][2]) * 6 / (L*L) + phi[0][1] * 2 / L - phi[1][1] * 4 / L;
-    dtheta[0][2] = (D[1][1] - D[0][1]) * 6 / (L*L) - phi[0][2] * 4 / L + phi[1][2] * 2 / L;
-    dtheta[1][2] = (D[0][1] - D[1][1]) * 6 / (L*L) + phi[0][2] * 2 / L - phi[1][2] * 4 / L;
+	dtheta[0][1] = (D[0][2] - D[1][2]) * 6.0 / (L*L) - phi[0][1] * 4.0 / L + phi[1][1] * 2.0 / L;
+    dtheta[1][1] = (D[1][2] - D[0][2]) * 6.0 / (L*L) + phi[0][1] * 2.0 / L - phi[1][1] * 4.0 / L;
+    dtheta[0][2] = (D[1][1] - D[0][1]) * 6.0 / (L*L) - phi[0][2] * 4.0 / L + phi[1][2] * 2.0 / L;
+    dtheta[1][2] = (D[0][1] - D[1][1]) * 6.0 / (L*L) + phi[0][2] * 2.0 / L - phi[1][2] * 4.0 / L;
 
     double sigma1; //Normal stress caused by strech
     double sigma2[2][2]; //Normal stress caused by bending(z-bending and y-bending)
@@ -392,35 +392,35 @@ void CBeam::ElementPostInfo(double* beamstress, double* Displacement, double* pr
     double tau_xz;
 
     sigma1 = material_->E * (D[1][0] - D[0][0]) / L;
-    tau_xy = material_->E * b * dtheta[0][0] / (4 + 4 * material_->Nu);
-    tau_xz = material_->E * a * dtheta[0][0] / (4 + 4 * material_->Nu);
+    tau_xy = material_->E * b * dtheta[0][0] / (4.0 + 4.0 * material_->Nu);
+    tau_xz = material_->E * a * dtheta[0][0] / (4.0 + 4.0 * material_->Nu);
     for (unsigned int i = 0; i < 2; i++){
-        sigma2[i][0] = material_->E * a * dtheta[i][2] / 2;
-        sigma2[i][1] = material_->E * b * dtheta[i][1] / 2;
+        sigma2[i][0] = material_->E * a * dtheta[i][2] / 2.0;
+        sigma2[i][1] = material_->E * b * dtheta[i][1] / 2.0;
         
         beamstress[i * 24] = sigma1 - sigma2[i][0] + sigma2[i][1];
-        beamstress[i * 24 + 1] = 0;
-        beamstress[i * 24 + 2] = 0;
+        beamstress[i * 24 + 1] = 0.0;
+        beamstress[i * 24 + 2] = 0.0;
         beamstress[i * 24 + 3] = -tau_xy;
-        beamstress[i * 24 + 4] = 0;
+        beamstress[i * 24 + 4] = 0.0;
         beamstress[i * 24 + 5] = tau_xz;
         beamstress[i * 24 + 6] = sigma1 - sigma2[i][0] - sigma2[i][1];
-        beamstress[i * 24 + 7] = 0;
-        beamstress[i * 24 + 8] = 0;
+        beamstress[i * 24 + 7] = 0.0;
+        beamstress[i * 24 + 8] = 0.0;
         beamstress[i * 24 + 9] = tau_xy;
-        beamstress[i * 24 + 10] = 0;
+        beamstress[i * 24 + 10] = 0.0;
         beamstress[i * 24 + 11] = tau_xz;
         beamstress[i * 24 + 12] = sigma1 + sigma2[i][0] - sigma2[i][1];
-        beamstress[i * 24 + 13] = 0;
-        beamstress[i * 24 + 14] = 0;
+        beamstress[i * 24 + 13] = 0.0;
+        beamstress[i * 24 + 14] = 0.0;
         beamstress[i * 24 + 15] = tau_xy;
-        beamstress[i * 24 + 16] = 0;
+        beamstress[i * 24 + 16] = 0.0;
         beamstress[i * 24 + 17] = -tau_xz;
         beamstress[i * 24 + 18] = sigma1 + sigma2[i][0] + sigma2[i][1];
-        beamstress[i * 24 + 19] = 0;
-        beamstress[i * 24 + 20] = 0;
+        beamstress[i * 24 + 19] = 0.0;
+        beamstress[i * 24 + 20] = 0.0;
         beamstress[i * 24 + 21] = -tau_xy;
-        beamstress[i * 24 + 22] = 0;
+        beamstress[i * 24 + 22] = 0.0;
         beamstress[i * 24 + 23] = -tau_xz;   
 
 		for (int i = 0; i < 48; i++)

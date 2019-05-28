@@ -729,18 +729,18 @@ void CPlate::ElementStress(double* stress, double* Displacement, double* positio
 		dis[9] * (nu * psix * psix * 0.1830127018922193 + etay * etay * -0.6830127018922193) +
 		dis[10] * (nu * psix * psix * 0.0000000000000000 + etay * etay * 0.2886751345948129) +
 		dis[11] * (nu * psix * psix * -0.2886751345948129 + etay * etay * 0.0000000000000000);
-	stress[2] = dis[0] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[1] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[2] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[3] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[4] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[5] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[6] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[7] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[8] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[9] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[10] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[11] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129);
+	stress[2] = dis[0] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[1] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[2] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[3] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[4] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[5] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[6] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[7] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[8] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[9] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[10] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[11] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129);
 	stress[3] =
 		dis[0] * (psix * psix * -0.6830127018922193 + nu * etay * etay * 0.1830127018922193) +
 		dis[1] * (psix * psix * 0.0000000000000000 + nu * etay * etay * 0.2886751345948129) +
@@ -767,18 +767,18 @@ void CPlate::ElementStress(double* stress, double* Displacement, double* positio
 		dis[9] * (nu * psix * psix * -0.1830127018922193 + etay * etay * -0.1830127018922193) +
 		dis[10] * (nu * psix * psix * 0.0000000000000000 + etay * etay * 0.0773502691896258) +
 		dis[11] * (nu * psix * psix * 0.0773502691896258 + etay * etay * 0.0000000000000000);
-	stress[5] = dis[0] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[1] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[2] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[3] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[4] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[5] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[6] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[7] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[8] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[9] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[10] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[11] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129);
+	stress[5] = dis[0] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[1] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[2] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[3] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[4] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[5] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[6] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[7] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[8] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[9] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[10] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[11] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129);
 	stress[6] =
 		dis[0] * (psix * psix * -0.1830127018922193 + nu * etay * etay * -0.1830127018922193) +
 		dis[1] * (psix * psix * 0.0000000000000000 + nu * etay * etay * -0.0773502691896258) +
@@ -805,18 +805,18 @@ void CPlate::ElementStress(double* stress, double* Displacement, double* positio
 		dis[9] * (nu * psix * psix * -0.6830127018922193 + etay * etay * 0.1830127018922193) +
 		dis[10] * (nu * psix * psix * 0.0000000000000000 + etay * etay * -0.2886751345948129) +
 		dis[11] * (nu * psix * psix * 0.2886751345948129 + etay * etay * 0.0000000000000000);
-	stress[8] = dis[0] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[1] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[2] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[3] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[4] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[5] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[6] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[7] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[8] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[9] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[10] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[11] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129);
+	stress[8] = dis[0] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[1] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[2] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[3] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[4] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[5] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[6] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[7] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[8] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[9] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[10] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[11] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129);
 	stress[9] =
 		dis[0] * (psix * psix * 0.1830127018922193 + nu * etay * etay * -0.6830127018922193) +
 		dis[1] * (psix * psix * 0.0000000000000000 + nu * etay * etay * -0.2886751345948129) +
@@ -843,18 +843,18 @@ void CPlate::ElementStress(double* stress, double* Displacement, double* positio
 		dis[9] * (nu * psix * psix * 0.6830127018922193 + etay * etay * 0.6830127018922193) +
 		dis[10] * (nu * psix * psix * 0.0000000000000000 + etay * etay * -1.0773502691896257) +
 		dis[11] * (nu * psix * psix * -1.0773502691896257 + etay * etay * 0.0000000000000000);
-	stress[11] = dis[0] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[1] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[2] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[3] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[4] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[5] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[6] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[7] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[8] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[9] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[10] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[11] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129);
+	stress[11] = dis[0] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[1] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[2] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[3] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[4] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[5] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[6] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[7] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[8] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[9] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[10] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[11] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129);
 	for (unsigned int i = 0; i < 11; ++i)
 	{
 		stress[i] = stress[i] * k;
@@ -867,17 +867,17 @@ void CPlate::ElementStress(double* stress, double* Displacement, double* positio
 		(nodes_[0]->XYZ[1] + nodes_[1]->XYZ[1] + nodes_[2]->XYZ[1] + nodes_[3]->XYZ[1]) * 0.25;
 	double zmid =
 		(nodes_[0]->XYZ[2] + nodes_[1]->XYZ[2] + nodes_[2]->XYZ[2] + nodes_[3]->XYZ[2]) * 0.25;
-	position[0] = xmid + sqrt(1.0 / 3) * (-xpsi);
-	position[1] = ymid + sqrt(1.0 / 3) * (-yeta);
+	position[0] = xmid + sqrt(1.0 / 3.0) * (-xpsi);
+	position[1] = ymid + sqrt(1.0 / 3.0) * (-yeta);
 	position[2] = zmid;
-	position[3] = xmid + sqrt(1.0 / 3) * (+xpsi);
-	position[4] = ymid + sqrt(1.0 / 3) * (-yeta);
+	position[3] = xmid + sqrt(1.0 / 3.0) * (+xpsi);
+	position[4] = ymid + sqrt(1.0 / 3.0) * (-yeta);
 	position[5] = zmid;
-	position[6] = xmid + sqrt(1.0 / 3) * (+xpsi);
-	position[7] = ymid + sqrt(1.0 / 3) * (yeta);
+	position[6] = xmid + sqrt(1.0 / 3.0) * (+xpsi);
+	position[7] = ymid + sqrt(1.0 / 3.0) * (yeta);
 	position[8] = zmid;
-	position[9] = xmid + sqrt(1.0 / 3) * (-xpsi);
-	position[10] = ymid + sqrt(1.0 / 3) * (yeta);
+	position[9] = xmid + sqrt(1.0 / 3.0) * (-xpsi);
+	position[10] = ymid + sqrt(1.0 / 3.0) * (yeta);
 	position[11] = zmid;
 }
 

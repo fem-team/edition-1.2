@@ -118,138 +118,138 @@ void CShell::ElementStiffness(double* Matrix)
 
 	double nu = material->nu;
 	const double k = material->E * material->h * material->h * material->h * 0.0833333333333333 /
-		(1 - nu * nu) * LX * LY / 4;
-	const double k2 = material->E / (1 - nu * nu) * material->h;
-	double xpsi = LX / 2;
-	double yeta = LY / 2;
+		(1.0 - nu * nu) * LX * LY / 4.0;
+	const double k2 = material->E / (1.0 - nu * nu) * material->h;
+	double xpsi = LX / 2.0;
+	double yeta = LY / 2.0;
 
 #ifdef _DEBUG_
 	cout << "Jacobian" << setw(20) << LX << setw(20) << LY;
 #endif
 	double MatrixLit[78];
-	MatrixLit[0] = k * (1 / (xpsi * xpsi * xpsi * xpsi) -
-		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5 - (7 * (xpsi * xpsi)) / 10) -
+	MatrixLit[0] = k * (1.0 / (xpsi * xpsi * xpsi * xpsi) -
+		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5.0 - (7.0 * (xpsi * xpsi)) / 10.0) -
 		(xpsi * xpsi * xpsi * xpsi)) /
 			((xpsi * xpsi * xpsi * xpsi) * (yeta * yeta * yeta * yeta)));
-	MatrixLit[1] = -k * ((8 * (nu / 2 - 0.5)) / (15 * (xpsi * xpsi)) - 4 / (3 * (yeta * yeta)));
-	MatrixLit[2] = k * (1 / (yeta * yeta * yeta) + ((2 * nu) / 5 + 0.1) / ((xpsi * xpsi) * yeta));
-	MatrixLit[3] = -k * ((4 * (nu - 1)) / (15 * (yeta * yeta)) - 4 / (3 * (xpsi * xpsi)));
+	MatrixLit[1] = -k * ((8.0 * (nu / 2.0 - 0.5)) / (15.0 * (xpsi * xpsi)) - 4.0 / (3.0 * (yeta * yeta)));
+	MatrixLit[2] = k * (1.0 / (yeta * yeta * yeta) + ((2.0 * nu) / 5.0 + 0.1) / ((xpsi * xpsi) * yeta));
+	MatrixLit[3] = -k * ((4.0 * (nu - 1.0)) / (15.0 * (yeta * yeta)) - 4.0 / (3.0 * (xpsi * xpsi)));
 	MatrixLit[4] = -(k * nu) / (xpsi * yeta);
-	MatrixLit[5] = -k * (1 / (xpsi * xpsi * xpsi) + ((2 * nu) / 5 + 0.1) / (xpsi * (yeta * yeta)));
-	MatrixLit[6] = k * (1 / (xpsi * xpsi * xpsi * xpsi) -
-		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5 - (7 * (xpsi * xpsi)) / 10) -
+	MatrixLit[5] = -k * (1.0 / (xpsi * xpsi * xpsi) + ((2.0 * nu) / 5.0 + 0.1) / (xpsi * (yeta * yeta)));
+	MatrixLit[6] = k * (1.0 / (xpsi * xpsi * xpsi * xpsi) -
+		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5.0 - (7.0 * (xpsi * xpsi)) / 10.0) -
 		(xpsi * xpsi * xpsi * xpsi)) /
 			((xpsi * xpsi * xpsi * xpsi) * (yeta * yeta * yeta * yeta)));
-	MatrixLit[7] = k * (1 / (xpsi * xpsi * xpsi) - (nu / 10 - 0.1) / (xpsi * (yeta * yeta)));
+	MatrixLit[7] = k * (1.0 / (xpsi * xpsi * xpsi) - (nu / 10.0 - 0.1) / (xpsi * (yeta * yeta)));
 	MatrixLit[8] =
-		k * (1 / (2 * (yeta * yeta * yeta)) - ((2 * nu) / 5 + 0.1) / ((xpsi * xpsi) * yeta));
+		k * (1.0 / (2.0 * (yeta * yeta * yeta)) - ((2.0 * nu) / 5.0 + 0.1) / ((xpsi * xpsi) * yeta));
 	MatrixLit[9] = -k * (1 / (xpsi * xpsi * xpsi * xpsi) -
-		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5 - (7 * (xpsi * xpsi)) / 10) +
-		(xpsi * xpsi * xpsi * xpsi) / 2) /
+		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5.0 - (7.0 * (xpsi * xpsi)) / 10.0) +
+		(xpsi * xpsi * xpsi * xpsi) / 2.0) /
 			((xpsi * xpsi * xpsi * xpsi) * (yeta * yeta * yeta * yeta)));
-	MatrixLit[10] = -k * ((8 * (nu / 2 - 0.5)) / (15 * (xpsi * xpsi)) - 4 / (3 * (yeta * yeta)));
-	MatrixLit[11] = k * (1 / (yeta * yeta * yeta) + ((2 * nu) / 5 + 0.1) / ((xpsi * xpsi) * yeta));
-	MatrixLit[12] = 0;
-	MatrixLit[13] = k * ((8 * (nu / 2 - 0.5)) / (15 * (xpsi * xpsi)) + 2 / (3 * (yeta * yeta)));
+	MatrixLit[10] = -k * ((8.0 * (nu / 2.0 - 0.5)) / (15.0 * (xpsi * xpsi)) - 4.0 / (3.0 * (yeta * yeta)));
+	MatrixLit[11] = k * (1.0 / (yeta * yeta * yeta) + ((2.0 * nu) / 5.0 + 0.1) / ((xpsi * xpsi) * yeta));
+	MatrixLit[12] = 0.0;
+	MatrixLit[13] = k * ((8.0 * (nu / 2.0 - 0.5)) / (15.0 * (xpsi * xpsi)) + 2.0 / (3.0 * (yeta * yeta)));
 	MatrixLit[14] =
-		k * (1 / (2 * (yeta * yeta * yeta)) - ((2 * nu) / 5 + 0.1) / ((xpsi * xpsi) * yeta));
-	MatrixLit[15] = -k * ((4 * (nu - 1)) / (15 * (yeta * yeta)) - 4 / (3 * (xpsi * xpsi)));
+		k * (1.0 / (2.0 * (yeta * yeta * yeta)) - ((2.0 * nu) / 5.0 + 0.1) / ((xpsi * xpsi) * yeta));
+	MatrixLit[15] = -k * ((4.0 * (nu - 1)) / (15.0 * (yeta * yeta)) - 4.0 / (3.0 * (xpsi * xpsi)));
 	MatrixLit[16] = (k * nu) / (xpsi * yeta);
-	MatrixLit[17] = k * (1 / (xpsi * xpsi * xpsi) + ((2 * nu) / 5 + 0.1) / (xpsi * (yeta * yeta)));
-	MatrixLit[18] = k * ((3 * nu - 3) / (45 * (yeta * yeta)) + 2 / (3 * (xpsi * xpsi)));
-	MatrixLit[19] = 0;
-	MatrixLit[20] = -k * (1 / (xpsi * xpsi * xpsi) - (nu / 10 - 0.1) / (xpsi * (yeta * yeta)));
-	MatrixLit[21] = k * (1 / (xpsi * xpsi * xpsi * xpsi) -
-		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5 - (7 * (xpsi * xpsi)) / 10) -
+	MatrixLit[17] = k * (1.0 / (xpsi * xpsi * xpsi) + ((2.0 * nu) / 5.0 + 0.1) / (xpsi * (yeta * yeta)));
+	MatrixLit[18] = k * ((3.0 * nu - 3.0) / (45.0 * (yeta * yeta)) + 2.0 / (3.0 * (xpsi * xpsi)));
+	MatrixLit[19] = 0.0;
+	MatrixLit[20] = -k * (1.0 / (xpsi * xpsi * xpsi) - (nu / 10.0 - 0.1) / (xpsi * (yeta * yeta)));
+	MatrixLit[21] = k * (1.0 / (xpsi * xpsi * xpsi * xpsi) -
+		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5.0 - (7.0 * (xpsi * xpsi)) / 10.0) -
 		(xpsi * xpsi * xpsi * xpsi)) /
 			((xpsi * xpsi * xpsi * xpsi) * (yeta * yeta * yeta * yeta)));
 	MatrixLit[22] =
-		k * (1 / (2 * (xpsi * xpsi * xpsi)) - ((2 * nu) / 5 + 0.1) / (xpsi * (yeta * yeta)));
-	MatrixLit[23] = -k * (1 / (yeta * yeta * yeta) - (nu / 10 - 0.1) / ((xpsi * xpsi) * yeta));
-	MatrixLit[24] = -k * (1 / (yeta * yeta * yeta * yeta) -
-		((xpsi * xpsi) * ((nu * (yeta * yeta)) / 5 - (7 * (yeta * yeta)) / 10) +
-		(yeta * yeta * yeta * yeta) / 2) /
+		k * (1.0 / (2.0 * (xpsi * xpsi * xpsi)) - ((2.0 * nu) / 5.0 + 0.1) / (xpsi * (yeta * yeta)));
+	MatrixLit[23] = -k * (1.0 / (yeta * yeta * yeta) - (nu / 10.0 - 0.1) / ((xpsi * xpsi) * yeta));
+	MatrixLit[24] = -k * (1.0 / (yeta * yeta * yeta * yeta) -
+		((xpsi * xpsi) * ((nu * (yeta * yeta)) / 5.0 - (7.0 * (yeta * yeta)) / 10.0) +
+		(yeta * yeta * yeta * yeta) / 2.0) /
 			((xpsi * xpsi * xpsi * xpsi) * (yeta * yeta * yeta * yeta)));
-	MatrixLit[25] = (k * ((xpsi * xpsi) * (nu / 10 - 0.1) + (yeta * yeta) / 2)) /
+	MatrixLit[25] = (k * ((xpsi * xpsi) * (nu / 10.0 - 0.1) + (yeta * yeta) / 2.0)) /
 		((xpsi * xpsi * xpsi) * (yeta * yeta));
 	MatrixLit[26] =
-		-k * (1 / (2 * (yeta * yeta * yeta)) + (nu / 10 - 0.1) / ((xpsi * xpsi) * yeta));
-	MatrixLit[27] = -k * (1 / (2 * (xpsi * xpsi * xpsi * xpsi)) +
-		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5 - (7 * (xpsi * xpsi)) / 10) +
-		(xpsi * xpsi * xpsi * xpsi) / 2) /
+		-k * (1.0 / (2.0 * (yeta * yeta * yeta)) + (nu / 10.0 - 0.1) / ((xpsi * xpsi) * yeta));
+	MatrixLit[27] = -k * (1.0 / (2.0 * (xpsi * xpsi * xpsi * xpsi)) +
+		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5.0 - (7.0 * (xpsi * xpsi)) / 10.0) +
+		(xpsi * xpsi * xpsi * xpsi) / 2.0) /
 			((xpsi * xpsi * xpsi * xpsi) * (yeta * yeta * yeta * yeta)));
-	MatrixLit[28] = -k * ((8 * (nu / 2 - 0.5)) / (15 * (xpsi * xpsi)) - 4 / (3 * (yeta * yeta)));
-	MatrixLit[29] = -k * (1 / (yeta * yeta * yeta) + ((2 * nu) / 5 + 0.1) / ((xpsi * xpsi) * yeta));
-	MatrixLit[30] = 0;
-	MatrixLit[31] = k * ((nu / 15 - 0.0666666666666667) / (xpsi * xpsi) + 2 / (3 * (yeta * yeta)));
-	MatrixLit[32] = k * (1 / (yeta * yeta * yeta) - (nu / 10 - 0.1) / ((xpsi * xpsi) * yeta));
+	MatrixLit[28] = -k * ((8.0 * (nu / 2.0 - 0.5)) / (15.0 * (xpsi * xpsi)) - 4.0 / (3.0 * (yeta * yeta)));
+	MatrixLit[29] = -k * (1.0 / (yeta * yeta * yeta) + ((2.0 * nu) / 5.0 + 0.1) / ((xpsi * xpsi) * yeta));
+	MatrixLit[30] = 0.0;
+	MatrixLit[31] = k * ((nu / 15.0 - 0.0666666666666667) / (xpsi * xpsi) + 2.0 / (3.0 * (yeta * yeta)));
+	MatrixLit[32] = k * (1.0 / (yeta * yeta * yeta) - (nu / 10.0 - 0.1) / ((xpsi * xpsi) * yeta));
 	MatrixLit[33] = 0;
-	MatrixLit[34] = -k * ((nu / 15 - 0.0666666666666667) / (xpsi * xpsi) - 1 / (3 * (yeta * yeta)));
-	MatrixLit[35] = (k * ((yeta * yeta) * (nu / 10 - 0.1) + (xpsi * xpsi) / 2)) /
+	MatrixLit[34] = -k * ((nu / 15.0 - 0.0666666666666667) / (xpsi * xpsi) - 1.0 / (3.0 * (yeta * yeta)));
+	MatrixLit[35] = (k * ((yeta * yeta) * (nu / 10.0 - 0.1) + (xpsi * xpsi) / 2.0)) /
 		((xpsi * xpsi) * (yeta * yeta * yeta));
-	MatrixLit[36] = -k * ((4 * (nu - 1)) / (15 * (yeta * yeta)) - 4 / (3 * (xpsi * xpsi)));
+	MatrixLit[36] = -k * ((4.0 * (nu - 1)) / (15.0 * (yeta * yeta)) - 4.0 / (3.0 * (xpsi * xpsi)));
 	MatrixLit[37] = -(k * nu) / (xpsi * yeta);
-	MatrixLit[38] = k * (1 / (xpsi * xpsi * xpsi) + ((2 * nu) / 5 + 0.1) / (xpsi * (yeta * yeta)));
-	MatrixLit[39] = k * ((4 * (nu - 1)) / (15 * (yeta * yeta)) + 2 / (3 * (xpsi * xpsi)));
-	MatrixLit[40] = 0;
+	MatrixLit[38] = k * (1.0 / (xpsi * xpsi * xpsi) + ((2.0 * nu) / 5.0 + 0.1) / (xpsi * (yeta * yeta)));
+	MatrixLit[39] = k * ((4.0 * (nu - 1.0)) / (15.0 * (yeta * yeta)) + 2.0 / (3.0 * (xpsi * xpsi)));
+	MatrixLit[40] = 0.0;
 	MatrixLit[41] =
-		k * (1 / (2 * (xpsi * xpsi * xpsi)) - ((2 * nu) / 5 + 0.1) / (xpsi * (yeta * yeta)));
-	MatrixLit[42] = -k * ((3 * nu - 3) / (45 * (yeta * yeta)) - 1 / (3 * (xpsi * xpsi)));
-	MatrixLit[43] = 0;
+		k * (1.0 / (2.0 * (xpsi * xpsi * xpsi)) - ((2.0 * nu) / 5.0 + 0.1) / (xpsi * (yeta * yeta)));
+	MatrixLit[42] = -k * ((3.0 * nu - 3.0) / (45.0 * (yeta * yeta)) - 1.0 / (3.0 * (xpsi * xpsi)));
+	MatrixLit[43] = 0.0;
 	MatrixLit[44] =
-		-k * (1 / (2 * (xpsi * xpsi * xpsi)) + (nu / 10 - 0.1) / (xpsi * (yeta * yeta)));
+		-k * (1.0 / (2.0 * (xpsi * xpsi * xpsi)) + (nu / 10.0 - 0.1) / (xpsi * (yeta * yeta)));
 	MatrixLit[45] = k * (1 / (xpsi * xpsi * xpsi * xpsi) -
-		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5 - (7 * (xpsi * xpsi)) / 10) -
+		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5.0 - (7.0 * (xpsi * xpsi)) / 10.0) -
 		(xpsi * xpsi * xpsi * xpsi)) /
 			((xpsi * xpsi * xpsi * xpsi) * (yeta * yeta * yeta * yeta)));
-	MatrixLit[46] = -k * (1 / (xpsi * xpsi * xpsi) - (nu / 10 - 0.1) / (xpsi * (yeta * yeta)));
-	MatrixLit[47] = (k * ((yeta * yeta) * ((2 * nu) / 5 + 0.1) - (xpsi * xpsi) / 2)) /
+	MatrixLit[46] = -k * (1.0 / (xpsi * xpsi * xpsi) - (nu / 10.0 - 0.1) / (xpsi * (yeta * yeta)));
+	MatrixLit[47] = (k * ((yeta * yeta) * ((2.0 * nu) / 5.0 + 0.1) - (xpsi * xpsi) / 2.0)) /
 		((xpsi * xpsi) * (yeta * yeta * yeta));
-	MatrixLit[48] = -k * (1 / (xpsi * xpsi * xpsi * xpsi) -
-		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5 - (7 * (xpsi * xpsi)) / 10) +
-		(xpsi * xpsi * xpsi * xpsi) / 2) /
+	MatrixLit[48] = -k * (1.0 / (xpsi * xpsi * xpsi * xpsi) -
+		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5.0 - (7.0 * (xpsi * xpsi)) / 10.0) +
+		(xpsi * xpsi * xpsi * xpsi) / 2.0) /
 			((xpsi * xpsi * xpsi * xpsi) * (yeta * yeta * yeta * yeta)));
 	MatrixLit[49] =
-		-k * (1 / (2 * (xpsi * xpsi * xpsi)) + (nu / 10 - 0.1) / (xpsi * (yeta * yeta)));
+		-k * (1.0 / (2.0 * (xpsi * xpsi * xpsi)) + (nu / 10.0 - 0.1) / (xpsi * (yeta * yeta)));
 	MatrixLit[50] =
-		-k * (1 / (2 * (yeta * yeta * yeta)) + (nu / 10 - 0.1) / ((xpsi * xpsi) * yeta));
-	MatrixLit[51] = -k * (1 / (2 * (xpsi * xpsi * xpsi * xpsi)) +
-		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5 - (7 * (xpsi * xpsi)) / 10) +
-		(xpsi * xpsi * xpsi * xpsi) / 2) /
+		-k * (1.0 / (2.0 * (yeta * yeta * yeta)) + (nu / 10.0 - 0.1) / ((xpsi * xpsi) * yeta));
+	MatrixLit[51] = -k * (1.0 / (2.0 * (xpsi * xpsi * xpsi * xpsi)) +
+		((yeta * yeta) * ((nu * (xpsi * xpsi)) / 5.0 - (7.0 * (xpsi * xpsi)) / 10.0) +
+		(xpsi * xpsi * xpsi * xpsi) / 2.0) /
 			((xpsi * xpsi * xpsi * xpsi) * (yeta * yeta * yeta * yeta)));
-	MatrixLit[52] = (k * ((xpsi * xpsi) * ((2 * nu) / 5 + 0.1) - (yeta * yeta) / 2)) /
+	MatrixLit[52] = (k * ((xpsi * xpsi) * ((2.0 * nu) / 5.0 + 0.1) - (yeta * yeta) / 2.0)) /
 		((xpsi * xpsi * xpsi) * (yeta * yeta));
-	MatrixLit[53] = -k * (1 / (yeta * yeta * yeta) - (nu / 10 - 0.1) / ((xpsi * xpsi) * yeta));
-	MatrixLit[54] = -k * (1 / (yeta * yeta * yeta * yeta) -
-		((xpsi * xpsi) * ((nu * (yeta * yeta)) / 5 - (7 * (yeta * yeta)) / 10) +
-		(yeta * yeta * yeta * yeta) / 2) /
+	MatrixLit[53] = -k * (1.0 / (yeta * yeta * yeta) - (nu / 10.0 - 0.1) / ((xpsi * xpsi) * yeta));
+	MatrixLit[54] = -k * (1.0 / (yeta * yeta * yeta * yeta) -
+		((xpsi * xpsi) * ((nu * (yeta * yeta)) / 5.0 - (7.0 * (yeta * yeta)) / 10.0) +
+		(yeta * yeta * yeta * yeta) / 2.0) /
 			((xpsi * xpsi * xpsi * xpsi) * (yeta * yeta * yeta * yeta)));
-	MatrixLit[55] = -k * ((8 * (nu / 2 - 0.5)) / (15 * (xpsi * xpsi)) - 4 / (3 * (yeta * yeta)));
-	MatrixLit[56] = -k * (1 / (yeta * yeta * yeta) + ((2 * nu) / 5 + 0.1) / ((xpsi * xpsi) * yeta));
-	MatrixLit[57] = 0;
-	MatrixLit[58] = k * ((8 * (nu / 2 - 0.5)) / (15 * (xpsi * xpsi)) + 2 / (3 * (yeta * yeta)));
-	MatrixLit[59] = (k * ((yeta * yeta) * ((2 * nu) / 5 + 0.1) - (xpsi * xpsi) / 2)) /
+	MatrixLit[55] = -k * ((8.0 * (nu / 2.0 - 0.5)) / (15.0 * (xpsi * xpsi)) - 4.0 / (3.0 * (yeta * yeta)));
+	MatrixLit[56] = -k * (1.0 / (yeta * yeta * yeta) + ((2.0 * nu) / 5.0 + 0.1) / ((xpsi * xpsi) * yeta));
+	MatrixLit[57] = 0.0;
+	MatrixLit[58] = k * ((8.0 * (nu / 2.0 - 0.5)) / (15.0 * (xpsi * xpsi)) + 2.0 / (3.0 * (yeta * yeta)));
+	MatrixLit[59] = (k * ((yeta * yeta) * ((2.0 * nu) / 5.0 + 0.1) - (xpsi * xpsi) / 2.0)) /
 		((xpsi * xpsi) * (yeta * yeta * yeta));
-	MatrixLit[60] = 0;
-	MatrixLit[61] = -k * ((nu / 15 - 0.0666666666666667) / (xpsi * xpsi) - 1 / (3 * (yeta * yeta)));
-	MatrixLit[62] = (k * ((yeta * yeta) * (nu / 10 - 0.1) + (xpsi * xpsi) / 2)) /
+	MatrixLit[60] = 0.0;
+	MatrixLit[61] = -k * ((nu / 15.0 - 0.0666666666666667) / (xpsi * xpsi) - 1.0 / (3.0 * (yeta * yeta)));
+	MatrixLit[62] = (k * ((yeta * yeta) * (nu / 10.0 - 0.1) + (xpsi * xpsi) / 2.0)) /
 		((xpsi * xpsi) * (yeta * yeta * yeta));
-	MatrixLit[63] = 0;
-	MatrixLit[64] = k * ((nu / 15 - 0.0666666666666667) / (xpsi * xpsi) + 2 / (3 * (yeta * yeta)));
-	MatrixLit[65] = k * (1 / (yeta * yeta * yeta) - (nu / 10 - 0.1) / ((xpsi * xpsi) * yeta));
-	MatrixLit[66] = -k * ((4 * (nu - 1)) / (15 * (yeta * yeta)) - 4 / (3 * (xpsi * xpsi)));
+	MatrixLit[63] = 0.0;
+	MatrixLit[64] = k * ((nu / 15.0 - 0.0666666666666667) / (xpsi * xpsi) + 2.0 / (3.0 * (yeta * yeta)));
+	MatrixLit[65] = k * (1.0 / (yeta * yeta * yeta) - (nu / 10.0 - 0.1) / ((xpsi * xpsi) * yeta));
+	MatrixLit[66] = -k * ((4.0 * (nu - 1.0)) / (15.0 * (yeta * yeta)) - 4.0 / (3.0 * (xpsi * xpsi)));
 	MatrixLit[67] = (k * nu) / (xpsi * yeta);
-	MatrixLit[68] = -k * (1 / (xpsi * xpsi * xpsi) + ((2 * nu) / 5 + 0.1) / (xpsi * (yeta * yeta)));
-	MatrixLit[69] = k * ((3 * nu - 3) / (45 * (yeta * yeta)) + 2 / (3 * (xpsi * xpsi)));
-	MatrixLit[70] = 0;
-	MatrixLit[71] = k * (1 / (xpsi * xpsi * xpsi) - (nu / 10 - 0.1) / (xpsi * (yeta * yeta)));
-	MatrixLit[72] = -k * ((3 * nu - 3) / (45 * (yeta * yeta)) - 1 / (3 * (xpsi * xpsi)));
-	MatrixLit[73] = 0;
-	MatrixLit[74] = (k * ((xpsi * xpsi) * (nu / 10 - 0.1) + (yeta * yeta) / 2)) /
+	MatrixLit[68] = -k * (1.0 / (xpsi * xpsi * xpsi) + ((2.0 * nu) / 5.0 + 0.1) / (xpsi * (yeta * yeta)));
+	MatrixLit[69] = k * ((3.0 * nu - 3.0) / (45.0 * (yeta * yeta)) + 2.0 / (3.0 * (xpsi * xpsi)));
+	MatrixLit[70] = 0.0;
+	MatrixLit[71] = k * (1.0 / (xpsi * xpsi * xpsi) - (nu / 10.0 - 0.1) / (xpsi * (yeta * yeta)));
+	MatrixLit[72] = -k * ((3.0 * nu - 3.0) / (45.0 * (yeta * yeta)) - 1.0 / (3.0 * (xpsi * xpsi)));
+	MatrixLit[73] = 0.0;
+	MatrixLit[74] = (k * ((xpsi * xpsi) * (nu / 10.0 - 0.1) + (yeta * yeta) / 2.0)) /
 		((xpsi * xpsi * xpsi) * (yeta * yeta));
-	MatrixLit[75] = k * ((4 * (nu - 1)) / (15 * (yeta * yeta)) + 2 / (3 * (xpsi * xpsi)));
-	MatrixLit[76] = 0;
-	MatrixLit[77] = (k * ((xpsi * xpsi) * ((2 * nu) / 5 + 0.1) - (yeta * yeta) / 2)) /
+	MatrixLit[75] = k * ((4.0 * (nu - 1.0)) / (15.0 * (yeta * yeta)) + 2.0 / (3.0 * (xpsi * xpsi)));
+	MatrixLit[76] = 0.0;
+	MatrixLit[77] = (k * ((xpsi * xpsi) * ((2.0 * nu) / 5.0 + 0.1) - (yeta * yeta) / 2.0)) /
 		((xpsi * xpsi * xpsi) * (yeta * yeta));
 
 #ifdef _DEBUG_
@@ -643,42 +643,42 @@ void CShell::ElementStiffness(double* Matrix)
 		};
 	#endif*/
 	double Matrix4Q[36];
-	Matrix4Q[0] = -LX * LY * (((2 * nu) / 3 - 2.0 / 3) / (LY * LY) - 4.0 / (3 * (LX * LX)));
-	Matrix4Q[1] = -LX * LY * (((2 * nu) / 3 - 2.0 / 3) / (LX * LX) - 4.0 / (3 * (LY * LY)));
-	Matrix4Q[2] = nu / 2 + 1.0 / 2;
-	Matrix4Q[3] = -LX * LY * (((2 * nu) / 3 - 2.0 / 3) / (LY * LY) - 4.0 / (3 * (LX * LX)));
-	Matrix4Q[4] = 1.0 / 2 - (3 * nu) / 2;
-	Matrix4Q[5] = -LX * LY * ((nu / 3 - 1.0 / 3) / (LY * LY) + 4.0 / (3 * (LX * LX)));
-	Matrix4Q[6] = -LX * LY * (((2 * nu) / 3 - 2.0 / 3) / (LX * LX) - 4.0 / (3 * (LY * LY)));
-	Matrix4Q[7] = -nu / 2 - 1.0 / 2;
-	Matrix4Q[8] = LX * LY * (((2 * nu) / 3 - 2.0 / 3) / (LX * LX) + 2.0 / (3 * (LY * LY)));
-	Matrix4Q[9] = (3 * nu) / 2 - 1.0 / 2;
-	Matrix4Q[10] = -LX * LY * (((2 * nu) / 3 - 2.0 / 3) / (LY * LY) - 4.0 / (3 * (LX * LX)));
-	Matrix4Q[11] = 1.0 / 2 - (3 * nu) / 2;
-	Matrix4Q[12] = LX * LY * (((2 * nu) / 3 - 2.0 / 3) / (LY * LY) + 2.0 / (3 * (LX * LX)));
-	Matrix4Q[13] = -nu / 2 - 1.0 / 2;
-	Matrix4Q[14] = LX * LY * ((nu / 3 - 1.0 / 3) / (LY * LY) - 2.0 / (3 * (LX * LX)));
-	Matrix4Q[15] = -LX * LY * (((2 * nu) / 3 - 2.0 / 3) / (LX * LX) - 4.0 / (3 * (LY * LY)));
-	Matrix4Q[16] = nu / 2 + 1.0 / 2;
-	Matrix4Q[17] = -LX * LY * ((nu / 3 - 1.0 / 3) / (LX * LX) + 4.0 / (3 * (LY * LY)));
-	Matrix4Q[18] = (3 * nu) / 2 - 1.0 / 2;
-	Matrix4Q[19] = LX * LY * ((nu / 3 - 1.0 / 3) / (LX * LX) - 2.0 / (3 * (LY * LY)));
-	Matrix4Q[20] = -nu / 2 - 1.0 / 2;
-	Matrix4Q[21] = -LX * LY * (((2 * nu) / 3 - 2.0 / 3) / (LY * LY) - 4.0 / (3 * (LX * LX)));
-	Matrix4Q[22] = 1.0 / 2 - (3 * nu) / 2;
-	Matrix4Q[23] = -LX * LY * ((nu / 3 - 1.0 / 3) / (LY * LY) + 4.0 / (3 * (LX * LX)));
-	Matrix4Q[24] = nu / 2 + 1.0 / 2;
-	Matrix4Q[25] = LX * LY * ((nu / 3 - 1.0 / 3) / (LY * LY) - 2.0 / (3 * (LX * LX)));
-	Matrix4Q[26] = (3 * nu) / 2 - 1.0 / 2;
-	Matrix4Q[27] = LX * LY * (((2 * nu) / 3 - 2.0 / 3) / (LY * LY) + 2.0 / (3 * (LX * LX)));
-	Matrix4Q[28] = -LX * LY * (((2 * nu) / 3 - 2.0 / 3) / (LX * LX) - 4.0 / (3 * (LY * LY)));
-	Matrix4Q[29] = -nu / 2 - 1.0 / 2;
-	Matrix4Q[30] = LX * LY * (((2 * nu) / 3 - 2.0 / 3) / (LX * LX) + 2.0 / (3 * (LY * LY)));
-	Matrix4Q[31] = (3 * nu) / 2 - 1.0 / 2;
-	Matrix4Q[32] = LX * LY * ((nu / 3 - 1.0 / 3) / (LX * LX) - 2.0 / (3 * (LY * LY)));
-	Matrix4Q[33] = nu / 2 + 1.0 / 2;
-	Matrix4Q[34] = -LX * LY * ((nu / 3 - 1.0 / 3) / (LX * LX) + 4.0 / (3 * (LY * LY)));
-	Matrix4Q[35] = 1.0 / 2 - (3 * nu) / 2;
+	Matrix4Q[0] = -LX * LY * (((2.0 * nu) / 3.0 - 2.0 / 3.0) / (LY * LY) - 4.0 / (3.0 * (LX * LX)));
+	Matrix4Q[1] = -LX * LY * (((2.0 * nu) / 3.0 - 2.0 / 3.0) / (LX * LX) - 4.0 / (3.0 * (LY * LY)));
+	Matrix4Q[2] = nu / 2.0 + 1.0 / 2.0;
+	Matrix4Q[3] = -LX * LY * (((2.0 * nu) / 3.0 - 2.0 / 3.0) / (LY * LY) - 4.0 / (3.0 * (LX * LX)));
+	Matrix4Q[4] = 1.0 / 2.0 - (3.0 * nu) / 2.0;
+	Matrix4Q[5] = -LX * LY * ((nu / 3.0 - 1.0 / 3.0) / (LY * LY) + 4.0 / (3.0 * (LX * LX)));
+	Matrix4Q[6] = -LX * LY * (((2.0 * nu) / 3.0 - 2.0 / 3.0) / (LX * LX) - 4.0 / (3.0 * (LY * LY)));
+	Matrix4Q[7] = -nu / 2.0 - 1.0 / 2.0;
+	Matrix4Q[8] = LX * LY * (((2.0 * nu) / 3.0 - 2.0 / 3.0) / (LX * LX) + 2.0 / (3.0 * (LY * LY)));
+	Matrix4Q[9] = (3.0 * nu) / 2.0 - 1.0 / 2.0;
+	Matrix4Q[10] = -LX * LY * (((2.0 * nu) / 3.0 - 2.0 / 3.0) / (LY * LY) - 4.0 / (3.0 * (LX * LX)));
+	Matrix4Q[11] = 1.0 / 2.0 - (3.0 * nu) / 2.0;
+	Matrix4Q[12] = LX * LY * (((2.0 * nu) / 3.0 - 2.0 / 3.0) / (LY * LY) + 2.0 / (3.0 * (LX * LX)));
+	Matrix4Q[13] = -nu / 2.0 - 1.0 / 2.0;
+	Matrix4Q[14] = LX * LY * ((nu / 3.0 - 1.0 / 3.0) / (LY * LY) - 2.0 / (3.0 * (LX * LX)));
+	Matrix4Q[15] = -LX * LY * (((2.0 * nu) / 3.0 - 2.0 / 3.0) / (LX * LX) - 4.0 / (3.0 * (LY * LY)));
+	Matrix4Q[16] = nu / 2.0 + 1.0 / 2.0;
+	Matrix4Q[17] = -LX * LY * ((nu / 3.0 - 1.0 / 3.0) / (LX * LX) + 4.0 / (3.0 * (LY * LY)));
+	Matrix4Q[18] = (3.0 * nu) / 2.0 - 1.0 / 2.0;
+	Matrix4Q[19] = LX * LY * ((nu / 3.0 - 1.0 / 3.0) / (LX * LX) - 2.0 / (3.0 * (LY * LY)));
+	Matrix4Q[20] = -nu / 2.0 - 1.0 / 2.0;
+	Matrix4Q[21] = -LX * LY * (((2.0 * nu) / 3.0 - 2.0 / 3.0) / (LY * LY) - 4.0 / (3.0 * (LX * LX)));
+	Matrix4Q[22] = 1.0 / 2.0 - (3.0 * nu) / 2.0;
+	Matrix4Q[23] = -LX * LY * ((nu / 3.0 - 1.0 / 3.0) / (LY * LY) + 4.0 / (3.0 * (LX * LX)));
+	Matrix4Q[24] = nu / 2.0 + 1.0 / 2.0;
+	Matrix4Q[25] = LX * LY * ((nu / 3.0 - 1.0 / 3.0) / (LY * LY) - 2.0 / (3.0 * (LX * LX)));
+	Matrix4Q[26] = (3.0 * nu) / 2.0 - 1.0 / 2.0;
+	Matrix4Q[27] = LX * LY * (((2.0 * nu) / 3.0 - 2.0 / 3.0) / (LY * LY) + 2.0 / (3.0 * (LX * LX)));
+	Matrix4Q[28] = -LX * LY * (((2.0 * nu) / 3.0 - 2.0 / 3.0) / (LX * LX) - 4.0 / (3.0 * (LY * LY)));
+	Matrix4Q[29] = -nu / 2.0 - 1.0 / 2.0;
+	Matrix4Q[30] = LX * LY * (((2.0 * nu) / 3.0 - 2.0 / 3.0) / (LX * LX) + 2.0 / (3.0 * (LY * LY)));
+	Matrix4Q[31] = (3.0 * nu) / 2.0 - 1.0 / 2.0;
+	Matrix4Q[32] = LX * LY * ((nu / 3.0 - 1.0 / 3.0) / (LX * LX) - 2.0 / (3.0 * (LY * LY)));
+	Matrix4Q[33] = nu / 2.0 + 1.0 / 2.0;
+	Matrix4Q[34] = -LX * LY * ((nu / 3.0 - 1.0 / 3.0) / (LX * LX) + 4.0 / (3.0 * (LY * LY)));
+	Matrix4Q[35] = 1.0 / 2.0 - (3.0 * nu) / 2.0;
 
 	for (unsigned i = 0; i < 36; ++i)
 	{
@@ -878,8 +878,8 @@ void CShell::ElementStress(double* stress, double* Displacement, double* positio
 	zdir[1] = xdir[2] * ydir[0] - xdir[0] * ydir[2];
 	zdir[2] = xdir[0] * ydir[1] - xdir[1] * ydir[0];
 
-	double xpsi = LX / 2;
-	double yeta = LY / 2;
+	double xpsi = LX / 2.0;
+	double yeta = LY / 2.0;
 
 	double truedisp[24];
 	double dis[12];      // displacement of nodes_
@@ -913,8 +913,8 @@ void CShell::ElementStress(double* stress, double* Displacement, double* positio
 
 	double nu = material->nu;
 	double Jacobian = xpsi * yeta;
-	const double k = material->E * material->h * 0.5 / (1 - nu * nu);
-	double k2 = material->E / (1 - nu * nu);
+	const double k = material->E * material->h * 0.5 / (1.0 - nu * nu);
+	double k2 = material->E / (1.0 - nu * nu);
 	double psix = yeta / Jacobian;
 	double etay = xpsi / Jacobian;
 
@@ -945,18 +945,18 @@ void CShell::ElementStress(double* stress, double* Displacement, double* positio
 		dis[9] * (nu * psix * psix * 0.1830127018922193 + etay * etay * -0.6830127018922193) +
 		dis[10] * (nu * psix * psix * 0.0000000000000000 + etay * etay * 0.2886751345948129) +
 		dis[11] * (nu * psix * psix * -0.2886751345948129 + etay * etay * 0.0000000000000000);
-	stress[2] = dis[0] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[1] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[2] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[3] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[4] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[5] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[6] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[7] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[8] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[9] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[10] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[11] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129);
+	stress[2] = dis[0] * (+psix * etay * (1.0 - nu) * 0.5 * -0.5000000000000000) +
+		dis[1] * (+psix * etay * (1.0 - nu) * 0.5 * 0.2886751345948129) +
+		dis[2] * (+psix * etay * (1.0 - nu) * 0.5 * -0.2886751345948129) +
+		dis[3] * (+psix * etay * (1.0 - nu) * 0.5 * 0.5000000000000000) +
+		dis[4] * (+psix * etay * (1.0 - nu) * 0.5 * -0.2886751345948129) +
+		dis[5] * (+psix * etay * (1.0 - nu) * 0.5 * 0.2886751345948129) +
+		dis[6] * (+psix * etay * (1.0 - nu) * 0.5 * -0.5000000000000000) +
+		dis[7] * (+psix * etay * (1.0 - nu) * 0.5 * 0.2886751345948129) +
+		dis[8] * (+psix * etay * (1.0 - nu) * 0.5 * -0.2886751345948129) +
+		dis[9] * (+psix * etay * (1.0 - nu) * 0.5 * 0.5000000000000000) +
+		dis[10] * (+psix * etay * (1.0 - nu) * 0.5 * -0.2886751345948129) +
+		dis[11] * (+psix * etay * (1.0 - nu) * 0.5 * 0.2886751345948129);
 	stress[3] =
 		dis[0] * (psix * psix * -0.6830127018922193 + nu * etay * etay * 0.1830127018922193) +
 		dis[1] * (psix * psix * 0.0000000000000000 + nu * etay * etay * 0.2886751345948129) +
@@ -983,18 +983,18 @@ void CShell::ElementStress(double* stress, double* Displacement, double* positio
 		dis[9] * (nu * psix * psix * -0.1830127018922193 + etay * etay * -0.1830127018922193) +
 		dis[10] * (nu * psix * psix * 0.0000000000000000 + etay * etay * 0.0773502691896258) +
 		dis[11] * (nu * psix * psix * 0.0773502691896258 + etay * etay * 0.0000000000000000);
-	stress[5] = dis[0] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[1] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[2] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[3] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[4] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[5] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[6] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[7] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[8] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[9] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[10] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[11] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129);
+	stress[5] = dis[0] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[1] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[2] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[3] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[4] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[5] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[6] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[7] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[8] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[9] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[10] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[11] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129);
 	stress[6] =
 		dis[0] * (psix * psix * -0.1830127018922193 + nu * etay * etay * -0.1830127018922193) +
 		dis[1] * (psix * psix * 0.0000000000000000 + nu * etay * etay * -0.0773502691896258) +
@@ -1021,18 +1021,18 @@ void CShell::ElementStress(double* stress, double* Displacement, double* positio
 		dis[9] * (nu * psix * psix * -0.6830127018922193 + etay * etay * 0.1830127018922193) +
 		dis[10] * (nu * psix * psix * 0.0000000000000000 + etay * etay * -0.2886751345948129) +
 		dis[11] * (nu * psix * psix * 0.2886751345948129 + etay * etay * 0.0000000000000000);
-	stress[8] = dis[0] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[1] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[2] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[3] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[4] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[5] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[6] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[7] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[8] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[9] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[10] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[11] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129);
+	stress[8] = dis[0] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[1] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[2] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[3] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[4] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[5] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[6] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[7] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[8] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[9] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[10] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[11] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129);
 	stress[9] =
 		dis[0] * (psix * psix * 0.1830127018922193 + nu * etay * etay * -0.6830127018922193) +
 		dis[1] * (psix * psix * 0.0000000000000000 + nu * etay * etay * -0.2886751345948129) +
@@ -1059,18 +1059,18 @@ void CShell::ElementStress(double* stress, double* Displacement, double* positio
 		dis[9] * (nu * psix * psix * 0.6830127018922193 + etay * etay * 0.6830127018922193) +
 		dis[10] * (nu * psix * psix * 0.0000000000000000 + etay * etay * -1.0773502691896257) +
 		dis[11] * (nu * psix * psix * -1.0773502691896257 + etay * etay * 0.0000000000000000);
-	stress[11] = dis[0] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[1] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[2] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[3] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[4] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[5] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[6] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[7] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[8] * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[9] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[10] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[11] * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129);
+	stress[11] = dis[0] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[1] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[2] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[3] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[4] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[5] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[6] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[7] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[8] * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[9] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[10] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[11] * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129);
 	for (unsigned int i = 0; i < 11; ++i)
 	{
 		stress[i] = stress[i] * k;
@@ -1083,17 +1083,17 @@ void CShell::ElementStress(double* stress, double* Displacement, double* positio
 		(nodes_[0]->XYZ[1] + nodes_[1]->XYZ[1] + nodes_[2]->XYZ[1] + nodes_[3]->XYZ[1]) * 0.25;
 	double zmid =
 		(nodes_[0]->XYZ[2] + nodes_[1]->XYZ[2] + nodes_[2]->XYZ[2] + nodes_[3]->XYZ[2]) * 0.25;
-	position[0] = xmid + sqrt(1.0 / 3) * (-xpsi);
-	position[1] = ymid + sqrt(1.0 / 3) * (-yeta);
+	position[0] = xmid + sqrt(1.0 / 3.0) * (-xpsi);
+	position[1] = ymid + sqrt(1.0 / 3.0) * (-yeta);
 	position[2] = zmid;
-	position[3] = xmid + sqrt(1.0 / 3) * (+xpsi);
-	position[4] = ymid + sqrt(1.0 / 3) * (-yeta);
+	position[3] = xmid + sqrt(1.0 / 3.0) * (+xpsi);
+	position[4] = ymid + sqrt(1.0 / 3.0) * (-yeta);
 	position[5] = zmid;
-	position[6] = xmid + sqrt(1.0 / 3) * (+xpsi);
-	position[7] = ymid + sqrt(1.0 / 3) * (yeta);
+	position[6] = xmid + sqrt(1.0 / 3.0) * (+xpsi);
+	position[7] = ymid + sqrt(1.0 / 3.0) * (yeta);
 	position[8] = zmid;
-	position[9] = xmid + sqrt(1.0 / 3) * (-xpsi);
-	position[10] = ymid + sqrt(1.0 / 3) * (yeta);
+	position[9] = xmid + sqrt(1.0 / 3.0) * (-xpsi);
+	position[10] = ymid + sqrt(1.0 / 3.0) * (yeta);
 	position[11] = zmid;
 	stress[12] = (0.5 / LX * (-dis_inner[0] + dis_inner[2] + dis_inner[4] - dis_inner[6]) +
 		nu * 0.5 / LY * (-dis_inner[1] - dis_inner[3] + dis_inner[5] + dis_inner[7])) *
@@ -1101,7 +1101,7 @@ void CShell::ElementStress(double* stress, double* Displacement, double* positio
 	stress[13] = (nu * 0.5 / LX * (-dis_inner[0] + dis_inner[2] + dis_inner[4] - dis_inner[6]) +
 		0.5 / LY * (-dis_inner[1] - dis_inner[3] + dis_inner[5] + dis_inner[7])) *
 		k2;
-	stress[14] = k2 * (1 - nu) * 0.5 *
+	stress[14] = k2 * (1.0-nu) * 0.5 *
 		(0.5 / LX * (-dis_inner[1] + dis_inner[3] + dis_inner[5] - dis_inner[7]) +
 			0.5 / LY * (-dis_inner[0] - dis_inner[2] + dis_inner[4] + dis_inner[6]));
 	position[12] = xmid;
@@ -1137,8 +1137,8 @@ void CShell::ElementPostInfo(double* stress2, double* Displacement, double* Posi
 	zdir[1] = xdir[2] * ydir[0] - xdir[0] * ydir[2];
 	zdir[2] = xdir[0] * ydir[1] - xdir[1] * ydir[0];
 
-	double xpsi = LX / 2;
-	double yeta = LY / 2;
+	double xpsi = LX / 2.0;
+	double yeta = LY / 2.0;
 
 	double truedisp[24];
 	double dis[12];      // displacement of nodes_
@@ -1180,7 +1180,7 @@ void CShell::ElementPostInfo(double* stress2, double* Displacement, double* Posi
 	double nu = material->nu;
 	double Jacobian = xpsi * yeta;
 
-	double k2 = material->E / (1 - nu * nu);
+	double k2 = material->E / (1.0 - nu * nu);
 	double psix = yeta / Jacobian;
 	double etay = xpsi / Jacobian;
 	double stress[15];
@@ -1221,18 +1221,18 @@ void CShell::ElementPostInfo(double* stress2, double* Displacement, double* Posi
 		(nu * psix * psix * 0.0000000000000000 + etay * etay * 0.2886751345948129) +
 		dis[11] * xpsi *
 		(nu * psix * psix * -0.2886751345948129 + etay * etay * 0.0000000000000000);
-	stress[2] = dis[0] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[1] * yeta * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[2] * xpsi * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[3] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[4] * yeta * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[5] * xpsi * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[6] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[7] * yeta * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[8] * xpsi * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[9] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[10] * yeta * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[11] * xpsi * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129);
+	stress[2] = dis[0] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[1] * yeta * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[2] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[3] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[4] * yeta * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[5] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[6] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[7] * yeta * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[8] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[9] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[10] * yeta * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[11] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129);
 	stress[3] =
 		dis[0] * (psix * psix * -0.6830127018922193 + nu * etay * etay * 0.1830127018922193) +
 		dis[1] * yeta * (psix * psix * 0.0000000000000000 + nu * etay * etay * 0.2886751345948129) +
@@ -1261,18 +1261,18 @@ void CShell::ElementPostInfo(double* stress2, double* Displacement, double* Posi
 		dis[10] * yeta *
 		(nu * psix * psix * 0.0000000000000000 + etay * etay * 0.0773502691896258) +
 		dis[11] * xpsi * (nu * psix * psix * 0.0773502691896258 + etay * etay * 0.0000000000000000);
-	stress[5] = dis[0] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[1] * yeta * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[2] * xpsi * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[3] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[4] * yeta * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[5] * xpsi * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[6] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[7] * yeta * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[8] * xpsi * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[9] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[10] * yeta * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[11] * xpsi * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129);
+	stress[5] = dis[0] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[1] * yeta * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[2] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[3] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[4] * yeta * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[5] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[6] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[7] * yeta * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[8] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[9] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[10] * yeta * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[11] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129);
 	stress[6] =
 		dis[0] * (psix * psix * -0.1830127018922193 + nu * etay * etay * -0.1830127018922193) +
 		dis[1] * yeta *
@@ -1307,18 +1307,18 @@ void CShell::ElementPostInfo(double* stress2, double* Displacement, double* Posi
 		dis[10] * yeta *
 		(nu * psix * psix * 0.0000000000000000 + etay * etay * -0.2886751345948129) +
 		dis[11] * xpsi * (nu * psix * psix * 0.2886751345948129 + etay * etay * 0.0000000000000000);
-	stress[8] = dis[0] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[1] * yeta * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[2] * xpsi * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[3] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[4] * yeta * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[5] * xpsi * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[6] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[7] * yeta * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[8] * xpsi * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[9] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[10] * yeta * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[11] * xpsi * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129);
+	stress[8] = dis[0] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[1] * yeta * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[2] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[3] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[4] * yeta * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[5] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[6] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[7] * yeta * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[8] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[9] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[10] * yeta * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[11] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129);
 	stress[9] =
 		dis[0] * (psix * psix * 0.1830127018922193 + nu * etay * etay * -0.6830127018922193) +
 		dis[1] * yeta *
@@ -1361,18 +1361,18 @@ void CShell::ElementPostInfo(double* stress2, double* Displacement, double* Posi
 		(nu * psix * psix * 0.0000000000000000 + etay * etay * -1.0773502691896257) +
 		dis[11] * xpsi *
 		(nu * psix * psix * -1.0773502691896257 + etay * etay * 0.0000000000000000);
-	stress[11] = dis[0] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[1] * yeta * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[2] * xpsi * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[3] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[4] * yeta * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[5] * xpsi * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[6] * (+psix * etay * (1 - nu) * 0.5 * -0.5000000000000000) +
-		dis[7] * yeta * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[8] * xpsi * (+psix * etay * (1 - nu) * 0.5 * -0.2886751345948129) +
-		dis[9] * (+psix * etay * (1 - nu) * 0.5 * 0.5000000000000000) +
-		dis[10] * yeta * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129) +
-		dis[11] * xpsi * (+psix * etay * (1 - nu) * 0.5 * 0.2886751345948129);
+	stress[11] = dis[0] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[1] * yeta * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[2] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[3] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[4] * yeta * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[5] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[6] * (+psix * etay * (1.0-nu) * 0.5 * -0.5000000000000000) +
+		dis[7] * yeta * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[8] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * -0.2886751345948129) +
+		dis[9] * (+psix * etay * (1.0-nu) * 0.5 * 0.5000000000000000) +
+		dis[10] * yeta * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129) +
+		dis[11] * xpsi * (+psix * etay * (1.0-nu) * 0.5 * 0.2886751345948129);
 	for (unsigned int i = 0; i < 11; ++i)
 	{
 		stress[i] = stress[i] * k2;
@@ -1385,7 +1385,7 @@ void CShell::ElementPostInfo(double* stress2, double* Displacement, double* Posi
 	stress[13] = (nu * 0.5 / LX * (-dis_inner[0] + dis_inner[2] + dis_inner[4] - dis_inner[6]) +
 		0.5 / LY * (-dis_inner[1] - dis_inner[3] + dis_inner[5] + dis_inner[7])) *
 		k2;
-	stress[14] = k2 * (1 - nu) * 0.5 *
+	stress[14] = k2 * (1.0-nu) * 0.5 *
 		(0.5 / LX * (-dis_inner[1] + dis_inner[3] + dis_inner[5] - dis_inner[7]) +
 			0.5 / LY * (-dis_inner[0] - dis_inner[2] + dis_inner[4] + dis_inner[6]));
 
@@ -1418,10 +1418,10 @@ void CShell::ElementPostInfo(double* stress2, double* Displacement, double* Posi
 		stress_nodes_[6 * i + 29] = 0.0;
 	}
 	for (unsigned int i = 0; i < 8; ++i) {
-		stress2[6 * i] = stress_nodes_[6 * i] * xdir[0] * xdir[0] + stress_nodes_[6 * i + 1] * ydir[0] * ydir[0] + stress_nodes_[6 * i + 2] * xdir[0] * ydir[0] * 2;
-		stress2[6 * i + 1] = stress_nodes_[6 * i] * xdir[1] * xdir[1] + stress_nodes_[6 * i + 1] * ydir[1] * ydir[1] + stress_nodes_[6 * i + 2] * xdir[1] * ydir[1] * 2;
+		stress2[6 * i] = stress_nodes_[6 * i] * xdir[0] * xdir[0] + stress_nodes_[6 * i + 1] * ydir[0] * ydir[0] + stress_nodes_[6 * i + 2] * xdir[0] * ydir[0] * 2.0;
+		stress2[6 * i + 1] = stress_nodes_[6 * i] * xdir[1] * xdir[1] + stress_nodes_[6 * i + 1] * ydir[1] * ydir[1] + stress_nodes_[6 * i + 2] * xdir[1] * ydir[1] * 2.0;
 		stress2[6 * i + 3] = stress_nodes_[6 * i] * xdir[0] * xdir[1] + stress_nodes_[6 * i + 1] * ydir[0] * ydir[1] + stress_nodes_[6 * i + 2] * (xdir[0] * ydir[1] + xdir[1] * ydir[0]);
-		stress2[6 * i + 2] = stress_nodes_[6 * i] * xdir[2] * xdir[2] + stress_nodes_[6 * i + 1] * ydir[2] * ydir[2] + stress_nodes_[6 * i + 2] * xdir[2] * ydir[2] * 2;
+		stress2[6 * i + 2] = stress_nodes_[6 * i] * xdir[2] * xdir[2] + stress_nodes_[6 * i + 1] * ydir[2] * ydir[2] + stress_nodes_[6 * i + 2] * xdir[2] * ydir[2] * 2.0;
 		stress2[6 * i + 4] = stress_nodes_[6 * i] * xdir[2] * xdir[1] + stress_nodes_[6 * i + 1] * ydir[2] * ydir[1] + stress_nodes_[6 * i + 2] * (xdir[2] * ydir[1] + xdir[1] * ydir[2]);
 		stress2[6 * i + 5] = stress_nodes_[6 * i] * xdir[2] * xdir[0] + stress_nodes_[6 * i + 1] * ydir[2] * ydir[0] + stress_nodes_[6 * i + 2] * (xdir[2] * ydir[0] + xdir[0] * ydir[2]);
 	}
