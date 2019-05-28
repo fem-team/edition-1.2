@@ -423,9 +423,6 @@ void CBeam::ElementPostInfo(double* beamstress, double* Displacement, double* pr
         beamstress[i * 24 + 22] = 0.0;
         beamstress[i * 24 + 23] = -tau_xz;   
 
-		for (int i = 0; i < 48; i++)
-			cout << beamstress[i] << endl;
-
     }
 }
 
