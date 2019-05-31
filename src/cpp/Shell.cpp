@@ -77,7 +77,11 @@ void CShell::GenerateLocationMatrix()
 	unsigned int i = 0;
 	for (unsigned int N = 0; N < NEN_; N++)
 		for (unsigned int D = 0; D < 6; D++)
+		{
 			LocationMatrix_[i++] = nodes_[N]->bcode[D];
+//			if (D == 3 || D == 4 )
+//				LocationMatrix_[i - 1] = 0;
+		}
 }
 
 //	Return the size of the element stiffness matrix (stored as an array column by column)

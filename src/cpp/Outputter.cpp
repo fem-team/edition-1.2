@@ -945,3 +945,30 @@ void COutputter::PrintDisplacement(unsigned int loadcase)
 }
 
 #endif
+//	Print displacement vector for debuging
+void COutputter::PrintDisplacement(unsigned int loadcase)
+{
+	*this << "*** _Debug_ *** Displacement vector" << endl;
+
+	CDomain* FEMData = CDomain::Instance();
+
+	unsigned int NEQ = FEMData->GetNEQ();
+	double* Force = FEMData->GetForce();
+
+	*this << "  Load case = " << loadcase << endl;
+
+	*this << setiosflags(ios::scientific) << setprecision(5);
+
+	for (unsigned int i = 0; i < NEQ; i++)
+	{
+		if ((i + 1) % 6 == 0)
+		{
+			*this << endl;
+		}
+
+		*this << setw(14) << Force[i];
+	}
+
+	*this << endl
+		<< endl;
+}

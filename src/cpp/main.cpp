@@ -22,7 +22,6 @@
 #include "Clock.h"
 #include "PostOutputter.h"
 
-
 using namespace std;
 
 int main(int argc, char *argv[])
@@ -112,6 +111,7 @@ int main(int argc, char *argv[])
 #ifdef _DEBUG_
         Output->PrintDisplacement(lcase);
 #endif
+		Output->PrintDisplacement(lcase);
             
 	        Output->OutputNodalDisplacement(lcase); //输出节点位移
     }
