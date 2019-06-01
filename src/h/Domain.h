@@ -116,7 +116,7 @@ public:
 	bool AssembleForce(unsigned int LoadCase); 
 
 //! Add Gravity
-	void AssembleGravity();
+//	void AssembleGravity();
 
 //!	Return solution mode
 	inline unsigned int GetMODEX() { return MODEX; }

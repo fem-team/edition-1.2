@@ -11,6 +11,9 @@
 #include "Domain.h"
 #include "Material.h"
 
+#include <iomanip>
+#include <fstream>
+
 using namespace std;
 
 //	Clear an array
@@ -246,17 +249,33 @@ bool CDomain::AssembleForce(unsigned int LoadCase)
 //	Loop over for all concentrated loads in load case LoadCase
 	for (unsigned int lnum = 0; lnum < LoadData->nloads; lnum++)
 	{
+		/*
+		//debug to print force assembled
+		ofstream out("E:/GitHub/edition-1.2/data/Domain force without force assembled.txt");
+		out << "Force before calculation" << endl;
+		for (int i = 1; i < NEQ; i++)
+			out << "Force" << i - 1 << setw(14) << Force[i - 1] << endl;
+		//
+		*/
 		unsigned int dof = NodeList[LoadData->node[lnum] - 1].bcode[LoadData->dof[lnum] - 1];
-        
+
         if(dof) // The DOF is activated
             Force[dof - 1] += LoadData->load[lnum];
+
    
 	}
-
+	/*
+	//debug to print force assembled
+	ofstream out("E:/GitHub/edition-1.2/data/force assembled.txt");
+	out << "Force before calculation" << endl;
+	for (int i = 1; i < NEQ ; i++)
+		out << "Force" << i - 1 << setw(14) << Force[i - 1] << endl;
+	//
+	*/
 	 return true;
 }
 // ÐÂ¼Ó
-
+/*
 void CDomain::AssembleGravity()
 {
 	
@@ -278,6 +297,7 @@ void CDomain::AssembleGravity()
 		}
 	 }
 }
+*/
 //
 
 

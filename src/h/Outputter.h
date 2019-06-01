@@ -121,6 +121,4 @@ public:
 	void PrintDisplacement(unsigned int loadcase);
 
 #endif
-	//!	Print displacement vector for debuging
-	void PrintDisplacement(unsigned int loadcase);
 };

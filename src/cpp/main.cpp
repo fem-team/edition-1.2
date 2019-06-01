@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 	FEMData->AssembleStiffnessMatrix();
     
 		//新加
-	FEMData->AssembleGravity();
+//	FEMData->AssembleGravity();
 
     double time_assemble = timer.ElapsedTime();
 
@@ -111,9 +111,6 @@ int main(int argc, char *argv[])
 #ifdef _DEBUG_
         Output->PrintDisplacement(lcase);
 #endif
-		Output->PrintDisplacement(lcase);
-            
-	        Output->OutputNodalDisplacement(lcase); //输出节点位移
     }
 
     double time_solution = timer.ElapsedTime();

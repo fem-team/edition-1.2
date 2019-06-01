@@ -9,10 +9,13 @@
 /*****************************************************************************/
 
 #include "Solver.h"
+#include "Outputter.h"
 
 #include <cmath>
 #include <cfloat>
 #include <iostream>
+#include <iomanip>
+#include <fstream>
 #include <algorithm>
 
 using namespace std;
@@ -24,6 +27,7 @@ void CLDLTSolver::LDLT()
 {
 	unsigned int N = K->dim();
     unsigned int* ColumnHeights = K->GetColumnHeights();   // Column Hights
+//	ofstream out("E:/GitHub/edition-1.2/data/file.txt");
 
 	for (unsigned int j = 2; j <= N; j++)      // Loop for column 2:n (Numbering starting from 1)
 	{
@@ -57,6 +61,8 @@ void CLDLTSolver::LDLT()
             
             exit(4);
         }
+		
+//		out << "j=" << j << setw(14) << (*K)(j, j) << endl;
     }
 };
 
@@ -65,6 +71,13 @@ void CLDLTSolver::BackSubstitution(double* Force)
 {
 	unsigned int N = K->dim();
     unsigned int* ColumnHeights = K->GetColumnHeights();   // Column Hights
+	/*
+	ofstream out("E:/GitHub/edition-1.2/data/file.txt");
+	out << "Force before calculation" << endl;
+	for( int i=1; i<N;i++)
+		out << "Force" << i - 1 << setw(14) << Force[i - 1] << endl;
+	out << "Force after calculation" << endl;
+	*/
 
 //	Reduce right-hand-side load vector (LV = R)
 	for (unsigned int i = 2; i <= N; i++)	// Loop for i=2:N (Numering starting from 1)
@@ -73,7 +86,9 @@ void CLDLTSolver::BackSubstitution(double* Force)
 
 		for (unsigned int j = mi; j <= i-1; j++)	// Loop for j=mi:i-1
 			Force[i-1] -= (*K)(j,i) * Force[j-1];	// V_i = R_i - sum_j (L_ji V_j)
+//		out << "Force" << i - 1 << setw(14) << Force[i-1] << endl;
 	}
+	
 
 //	Back substitute (Vbar = D^(-1) V, L^T a = Vbar)
 	for (unsigned int i = 1; i <= N; i++)	// Loop for i=1:N

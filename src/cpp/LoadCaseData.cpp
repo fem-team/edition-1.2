@@ -52,7 +52,13 @@ bool CLoadCaseData :: Read(ifstream& Input, unsigned int lcase)
 
 	for (unsigned int i = 0; i < NL; i++)
 		Input >> node[i] >> dof[i] >> load[i];
-
+/*
+	//debug to print force assembled
+	ofstream out("E:/GitHub/edition-1.2/data/LoadCaseData load.txt");
+	out << "Force before calculation" << endl;
+	for (int i = 0; i < NL; i++)
+		out << "Load" << i << setw(14) << load[i] << endl;
+*/
 	return true;
 }
 
