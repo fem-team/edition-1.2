@@ -1188,7 +1188,6 @@ void CShell::ElementPostInfo(double* stress2, double* Displacement, double* Posi
 	double psix = yeta / Jacobian;
 	double etay = xpsi / Jacobian;
 	double stress[15];
-	/*well it's just too complex a set of formulas...*/
 	stress[0] =
 		dis[0] * (psix * psix * 0.6830127018922193 + nu * etay * etay * 0.6830127018922193) +
 		dis[1] * yeta * (psix * psix * 0.0000000000000000 + nu * etay * etay * 1.0773502691896257) +

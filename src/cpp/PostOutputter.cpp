@@ -402,8 +402,8 @@ void CPostOutputter::OutputElementStress()
 
 			for (unsigned int Ele = 0; Ele < NUME; Ele++)
 			{
-				EleGrp[Ele].ElementPostInfo(stresses4PE, Displacement, PrePositions4PE,
-					Positions4PE);
+				EleGrp[Ele].ElementPostInfo(stresses4SE, Displacement, PrePositions4SE,
+					Positions4SE);
 
 				for (unsigned i = 0; i < 8; ++i)
 				{
